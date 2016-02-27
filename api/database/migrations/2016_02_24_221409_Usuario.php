@@ -19,6 +19,8 @@ class Usuario extends Migration
             $t->string('senha');
             $t->integer('id_permissao')->unsigned();
             $t->timestamps();
+            $t->text('remember_token');
+            $t->char('api_token', 60)->nullable()->after('remember_token');
         });
 
     }

@@ -11,28 +11,31 @@ use Illuminate\Support\Facades\Hash;
 
 class UsuarioController extends Controller
 {
-    public function create(Request $request)
-    {
-	    try{
 
-		    $this->validate($request,[
-			    'nome' => 'required|min:4|max:50',
-			    'login' => 'required|min:4|max:10',
-			    'senha' => 'required|min:6|max:10',
-			    'id_permissao' => 'required',
-		    ]);
+	private $model = 'usuario';
 
-		    $usuario = $request->all();
-		    $usuario['senha'] = Hash::make($usuario['senha']);
-		    $user = new Usuario();
-		    $newUsuario = $user->create($usuario);
-		    return $this->_return('success','Usuario cadastrado',['id'=>$newUsuario->id_usuario]);
+	public function create(Request $request)
+	{
+		try{
 
-	    }catch (\Exception $e){
-		    $this->_logErro($e);
-        return $this->_return('error','Erro ao cadastrar usuario',['error'=>$e->getMessage()]);
-	    }
-    }
+			$this->validate($request,[
+				'nome' => 'required|min:4|max:50',
+				'login' => 'required|min:4|max:10',
+				'senha' => 'required|min:6|max:10',
+				'id_permissao' => 'required',
+			]);
+
+			$params = $request->all();
+
+			$model = new ucfirst($this->model);
+			$result = $model->create($params);
+			return $this->_return('success',ucfirst($this->model).' cadastrado',['id'=>$result->{'id_'.$this->model}]);
+
+		}catch (\Exception $e){
+			$this->_logErro($e);
+			return $this->_return('error','Erro ao cadastrar '.$this->model,['error'=>$e->getMessage()]);
+		}
+	}
 
 	public function update(Request $request)
 	{

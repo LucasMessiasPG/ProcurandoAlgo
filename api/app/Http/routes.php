@@ -1,6 +1,10 @@
 <?php
 
-Route::post('login','AdminCOntroller@login');
+Route::get('/',function(){
+    echo 'ProcurandoAlgo';
+});
+
+Route::post('login','AdminController@login');
 
 //Rotas protegidas por Basic
 Route::group(['middleware' => ['ws']], function () {
@@ -10,10 +14,16 @@ Route::group(['middleware' => ['ws']], function () {
         Route::post('update','UsuarioController@update');
         Route::get('delete/{id}','UsuarioController@destroy');
     });
+    Route::group(['prefix'=>'departamento'], function(){
+        Route::post('/','DepartamentoController@filter');
+        Route::post('create','UsuarioController@create');
+        Route::post('update','UsuarioController@update');
+        Route::get('delete/{id}','UsuarioController@destroy');
+    });
 });
 
 //Rotas protegidas por Auth
 Route::group(['middleware' => ['web']], function () {
-
+    //Route::get('/teste',function(){echo 'teste';});
 });
 
