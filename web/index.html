@@ -11,10 +11,22 @@
 	<script src="js/lib/angular-route.js"></script>
 	<script src="js/lib/angular-loader.js"></script>
 	<script src="js/lib/angular-animate.min.js"></script>
-</head>
-<body>
+	<script src="js/lib/jquery-2.2.1.min.js"></script>
+	<script src="js/lib/bootstrap.min.js"></script>
+	<script src="js/app.js"></script>
+	<script src="js/config/route.js"></script>
+	<script src="js/controller.js"></script>
 
-E-commerce
+	<script src="js/factory/app.js"></script>
+	<script src="js/factory/departamento.js"></script>
+</head>
+<body ng-app="procurandoalgo" ng-controller="MainCtrl">
+
+<div ng-include="'templates/header.html'"></div>
+
+<div ng-view>
+	<!-- CONTEUDO -->
+</div>
 
 </body>
 </html>
