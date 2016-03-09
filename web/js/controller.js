@@ -186,3 +186,11 @@ app.controller('CarrinhoCtrl', function ($scope) {
 		}
 	];
 });
+
+app.controller('ProdutoCtrl', function ($scope) {
+	$scope.produto = {
+		nome: 'teste',
+		valor: 200,
+		descricao: 'uma pequena descricao'
+	};
+});
