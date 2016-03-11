@@ -1,0 +1,21 @@
+<header>
+    <nav class="navbar navbar-light bg-faded">
+        <a class="navbar-brand" href="#">Navbar</a>
+        <ul class="nav navbar-nav">
+            <li class="nav-item active">
+                <a class="nav-link" [routerLink]="['Home']">Home <span class="sr-only">(current)</span></a>
+            </li>
+
+        </ul>
+        <form class="form-inline pull-xs-right">
+            <input class="form-control" type="text" placeholder="Procurar">
+            <button class="btn btn-success-outline" type="submit">Procurar</button>
+        </form>
+    </nav>
+</header>
+
+<router-outlet></router-outlet>
+
+<footer>
+   @copyright
+</footer>

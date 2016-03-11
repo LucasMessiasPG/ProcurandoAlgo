@@ -1,0 +1,47 @@
+<html>
+<head>
+    <title>Procurando Algo</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+
+    <base href="/ProcurandoAlgo/client/">
+
+    <link rel="stylesheet" href="assets/css/bootstrap.css">
+
+    <!-- 1. Load libraries -->
+    <!-- IE required polyfills, in this exact order -->
+    <script src="node_modules/es6-shim/es6-shim.min.js"></script>
+    <script src="node_modules/systemjs/dist/system-polyfills.js"></script>
+    <script src="node_modules/angular2/es6/dev/src/testing/shims_for_IE.js"></script>
+
+    <script src="node_modules/angular2/bundles/angular2-polyfills.js"></script>
+    <script src="node_modules/systemjs/dist/system.src.js"></script>
+    <script src="node_modules/rxjs/bundles/Rx.js"></script>
+    <script src="node_modules/angular2/bundles/angular2.js"></script>
+    <script src="node_modules/angular2/bundles/router.min.js"></script>
+    <script src="node_modules/angular2/bundles/http.min.js"></script>
+
+    <script src="assets/js/jquery-2.2.1.min.js"></script>
+    <script src="assets/js/tether.min.js"></script>
+    <script src="assets/js/bootstrap.js"></script>
+
+    <!-- 2. Configure SystemJS -->
+    <script>
+        System.config({
+            map: {
+                rxjs: "node_modules/rxjs"
+            },
+            packages: {
+                app: {format: 'register', defaultExtension: 'js'},
+                rxjs: {defaultExtension: 'js'}
+            }
+        });
+        System.import('app/boot')
+                .then(null, console.error.bind(console));
+    </script>
+</head>
+
+<!-- 3. Display the application -->
+<body>
+<procurandoalgo>Carregando...</procurandoalgo>
+</body>
+</html>
