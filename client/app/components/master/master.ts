@@ -48,7 +48,7 @@ export class MasterComponent {
     public buscar(evento, texto) {
         event.preventDefault();
 
-        console.log(this.route.path);
+        console.log(this.route);
     }
 
 }
