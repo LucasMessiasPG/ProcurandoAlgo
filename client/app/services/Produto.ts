@@ -15,4 +15,11 @@ export class ProdutoService {
             res => res.json()
         );
     }
+
+    public filter(filter) {
+        return this.http.post(this.url+'/filter',filter).map(
+            res => res.json()
+        );
+    }
+
 }

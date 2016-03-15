@@ -33,6 +33,26 @@ class DepartamentoControlle extends Controller
     }
   }
 
+	public function update(Request $request)
+	{
+		try{
+
+			$this->validate($request,[
+				'id_deparatamento' => 'required',
+				'nome' => 'min:4|max:50',
+				'descricao' => 'min:4|max:200',
+			]);
+
+			$params = $request->all();
+			$model = new ucfirst($this->model);
+			$model->update($params);
+			return $this->_return('success',ucfirst($this->model).' alterado');
+		}catch (\Exception $e){
+			$this->_logErro($e);
+			return $this->_return('error','Erro ao alterar '.$this->model,['error'=>$e->getMessage()]);
+		}
+	}
+
 	public function filter(Request $request)
 	{
 		try{
@@ -57,6 +77,18 @@ class DepartamentoControlle extends Controller
 		}catch (\Exception $e){
 			$this->_logErro($e);
 			return $this->_return('error','Erro ao filtrar '.$this->model,['error'=>$e->getMessage()]);
+		}
+	}
+
+	public function destroy($id)
+	{
+		try{
+			$model = new ucfirst($this->model);
+			$model->delete($id);
+			return $this->_return('success',ucfirst($this->model).' deletado');
+		}catch (\Exception $e){
+			$this->_logErro($e);
+			return $this->_return('error','Erro ao deletar '.$this->model,['error'=>$e->getMessage()]);
 		}
 	}
 }

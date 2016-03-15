@@ -12,10 +12,10 @@ class Log extends Migration
      */
     public function up()
     {
-        Schema::create('log', function (Blueprint $t) {
+        Schema::create('logs', function (Blueprint $t) {
             $t->increments('id_log');
             $t->string('descricao');
-            $t->string('id_usuario');
+            $t->integer('id_usuario')->unsigned();
             $t->timestamps();
         });
     }
@@ -27,6 +27,6 @@ class Log extends Migration
      */
     public function down()
     {
-        Schema::drop('log');
+        Schema::drop('logs');
     }
 }

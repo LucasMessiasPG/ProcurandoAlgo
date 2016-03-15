@@ -3,7 +3,7 @@
 use Illuminate\Database\Schema\Blueprint;
 use Illuminate\Database\Migrations\Migration;
 
-class Departamento extends Migration
+class Produto extends Migration
 {
     /**
      * Run the migrations.
@@ -12,11 +12,12 @@ class Departamento extends Migration
      */
     public function up()
     {
-        Schema::create('departamentos', function (Blueprint $t) {
-            $t->increments('id_departamento');
-            $t->integer('id_departamento_pai')->unsigned();
+        Schema::create('produtos', function (Blueprint $t) {
+            $t->increments('id_produto');
             $t->string('nome');
             $t->string('descricao');
+            $t->float('valor_unitario',10,2);
+            $t->integer('id_marca')->unsigner();
             $t->timestamps();
         });
     }
@@ -28,6 +29,6 @@ class Departamento extends Migration
      */
     public function down()
     {
-        Schema::drop('departamentos');
+        Schema::drop('produtos');
     }
 }

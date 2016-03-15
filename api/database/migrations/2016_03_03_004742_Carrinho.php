@@ -3,7 +3,7 @@
 use Illuminate\Database\Schema\Blueprint;
 use Illuminate\Database\Migrations\Migration;
 
-class Departamento extends Migration
+class Carrinho extends Migration
 {
     /**
      * Run the migrations.
@@ -12,11 +12,11 @@ class Departamento extends Migration
      */
     public function up()
     {
-        Schema::create('departamentos', function (Blueprint $t) {
-            $t->increments('id_departamento');
-            $t->integer('id_departamento_pai')->unsigned();
-            $t->string('nome');
-            $t->string('descricao');
+        Schema::create('carrinhos', function (Blueprint $t) {
+            $t->increments('id_carrinho');
+            $t->integer('id_produto')->unsigned();
+            $t->integer('id_usuario')->unsigned();
+            $t->timestamp('data_expeira');
             $t->timestamps();
         });
     }
@@ -28,6 +28,6 @@ class Departamento extends Migration
      */
     public function down()
     {
-        Schema::drop('departamentos');
+        Schema::drop('carrinhos');
     }
 }

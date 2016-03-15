@@ -7,5 +7,11 @@ import {ProdutoListaComponent} from "../produto-lista/produto-lista";
 })
 
 export class HomeComponent {
-    public produtos;
+
+    public destaque_obj;
+    constructor(){
+        this.destaque_obj = {name:'Destaques',filter:{id:2}};
+    }
+
+
 }

@@ -1,7 +1,7 @@
 <?php
 
-Route::get('/',function(){
-    echo 'ProcurandoAlgo';
+Route::get('/api/pessoa',function(){
+    return ['name'=>'ProcurandoAlgo','id'=>'1'];
 });
 
 Route::post('login','AdminController@login');
@@ -11,10 +11,16 @@ Route::group(['middleware' => ['ws']], function () {
     Route::group(['prefix'=>'usuario'], function(){
         Route::post('/','UsuarioController@filter');
         Route::post('create','UsuarioController@create');
-        Route::post('update','UsuarioController@update');
+        Route::post('update','Usuphp aarioController@update');
         Route::get('delete/{id}','UsuarioController@destroy');
     });
     Route::group(['prefix'=>'departamento'], function(){
+        Route::post('/','DepartamentoController@filter');
+        Route::post('create','UsuarioController@create');
+        Route::post('update','UsuarioController@update');
+        Route::get('delete/{id}','UsuarioController@destroy');
+    });
+    Route::group(['prefix'=>'pedido'], function(){
         Route::post('/','DepartamentoController@filter');
         Route::post('create','UsuarioController@create');
         Route::post('update','UsuarioController@update');

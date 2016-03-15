@@ -12,7 +12,7 @@ class Permissao extends Migration
      */
     public function up()
     {
-        Schema::create('permissao', function (Blueprint $t) {
+        Schema::create('permissaos', function (Blueprint $t) {
             $t->increments('id_permissao');
             $t->string('descricao');
             $t->timestamps();
@@ -26,6 +26,6 @@ class Permissao extends Migration
      */
     public function down()
     {
-        Schema::drop('permissao');
+        Schema::drop('permissaos');
     }
 }
