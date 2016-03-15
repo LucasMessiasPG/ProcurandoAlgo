@@ -10,7 +10,7 @@ export class HomeComponent {
 
     public destaque_obj;
     constructor(){
-        this.destaque_obj = {name:'Destaques',filter:{id:2}};
+        this.destaque_obj = {id:2};
     }
 
 

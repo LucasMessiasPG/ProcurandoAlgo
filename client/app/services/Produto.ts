@@ -1,5 +1,8 @@
 import {Injectable} from "angular2/core";
 import {Http} from "angular2/http";
+import {Headers} from "angular2/http";
+declare var $:any;
+
 @Injectable()
 export class ProdutoService {
 
@@ -16,8 +19,14 @@ export class ProdutoService {
         );
     }
 
+
+
     public filter(filter) {
-        return this.http.post(this.url+'/filter',filter).map(
+
+        var headers = new Headers();
+        headers.append('Content-Type', 'application/x-www-form-urlencoded');
+
+        return this.http.post(this.url, $.param(filter),{headers:headers}).map(
             res => res.json()
         );
     }

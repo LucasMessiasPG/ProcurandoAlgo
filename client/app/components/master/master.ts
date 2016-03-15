@@ -51,4 +51,6 @@ export class MasterComponent {
         console.log(this.route.path);
     }
 
+
+
 }

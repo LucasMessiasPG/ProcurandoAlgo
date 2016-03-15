@@ -1,7 +1,10 @@
 <?php
 
-Route::get('/api/pessoa',function(){
-    return ['name'=>'ProcurandoAlgo','id'=>'1'];
+Route::post('/api/pessoa',function(\Illuminate\Http\Request $request){
+    return [
+      ['id_produto'=>'10','nome'=>'ProcurandoAlgo','id_departamento'=>'1','valor'=>'100.00'],
+      ['id_produto'=>'22','nome'=>'ProcurandoAlgo2','id_departamento'=>'2','valor'=>'123.00']
+    ];
 });
 
 Route::post('login','AdminController@login');
