@@ -5,13 +5,13 @@ import {Input} from "angular2/core";
 @Component({
     selector: "produto-lista",
     templateUrl: "./app/components/produto-lista/lista.html",
-    inputs: ['tipo']
+    inputs: ['filtro']
 })
 
 export class ProdutoListaComponent {
 
     public produtos;
-    @Input set tipo(obj){
+    @Input set filtro(obj){
         this.filter(obj);
     };
 

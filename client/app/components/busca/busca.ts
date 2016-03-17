@@ -10,12 +10,12 @@ import {ProdutoListaComponent} from "../produto-lista/produto-lista";
 
 export class BuscaComponent {
 
-    public tipo = {
-        texto: null
-    };
+    public filtro;
 
     constructor(private routeParams: RouteParams) {
-        this.tipo.texto = routeParams.get('texto');
+        this.filtro = {
+            texto: routeParams.get('texto')
+        };
     }
 
 }
