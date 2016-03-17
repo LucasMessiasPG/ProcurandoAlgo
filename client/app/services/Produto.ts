@@ -19,8 +19,6 @@ export class ProdutoService {
         );
     }
 
-
-
     public filter(filter) {
 
         var headers = new Headers();
