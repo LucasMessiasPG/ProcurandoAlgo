@@ -4,6 +4,7 @@ import {HomeComponent} from "../home/home";
 import {DepartamentoComponent} from "../departamento/departamento";
 import {enableProdMode} from "angular2/core";
 import {BuscaComponent} from "../busca/busca";
+import {CarrinhoComponent} from "../carrinho/carrinho";
 
 //Aplicação em Produção
 enableProdMode();
@@ -19,7 +20,8 @@ enableProdMode();
 @RouteConfig([
     {path: "/", name: "Home", component: HomeComponent},
     {path: "/departamento/:id_departamento", name: "Departamento", component: DepartamentoComponent},
-    {path: "/busca/:texto", name: "Busca", component: BuscaComponent}
+    {path: "/busca/:texto", name: "Busca", component: BuscaComponent},
+    {path: "/carrinho", name:"Carrinho", component: CarrinhoComponent}
 ])
 
 export class MasterComponent {

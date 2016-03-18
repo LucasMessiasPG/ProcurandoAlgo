@@ -7,7 +7,9 @@ declare var $:any;
 export class ProdutoService {
 
     public produtos = [];
-    private url = "http://localhost:8000/api/pessoa";
+    private urlBase = "http://192.168.1.170:8000/";
+    private url = "busca";
+    private _filter = {};
 
     constructor(public http: Http) {
 
@@ -20,13 +22,23 @@ export class ProdutoService {
     }
 
     public filter(filter) {
+        this._filter = filter;
 
+        this.exec();
+    }
+
+    public query(url) {
+        this.url = url;
+    }
+
+    public exec() {
         var headers = new Headers();
-        headers.append('Content-Type', 'application/x-www-form-urlencoded');
 
-        return this.http.post(this.url, $.param(filter),{headers:headers}).map(
+        headers.append('Content-Type', 'application/x-www-form-urlencoded');
+        //headers.append('Authorization', 'Basic bWVzc2lhczoxMjM0NTY=')
+
+        return this.http.post(this.urlBase + this.url, $.param(this._filter),{headers:headers}).map(
             res => res.json()
         );
     }
-
 }

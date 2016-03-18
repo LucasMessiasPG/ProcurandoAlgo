@@ -8,12 +8,17 @@ import {ProdutoListaComponent} from "../produto-lista/produto-lista";
 
 export class HomeComponent {
 
-    public destaque_filter: {};
+    public destaque_filter;
 
-    public promocao_filter: {}
+    public promocao_filter;
 
     constructor() {
-        this.destaque_filter.tipo = "destaque";
-        this.promocao_filter.tipo = "promocao";
+        this.destaque_filter = {
+            tipo: "destaque"
+        };
+
+        this.promocao_filter = {
+            tipo: "promocao"
+        };
     }
 }

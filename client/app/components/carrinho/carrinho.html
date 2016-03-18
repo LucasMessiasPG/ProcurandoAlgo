@@ -1,0 +1,77 @@
+<div class="container">
+    <section>
+        <h4>Produtos no carrinho</h4>
+
+        <table class="table table-responsive">
+            <thead>
+            <tr>
+                <th>Produto</th>
+                <th>Quantidade</th>
+                <th>Valor Unitário</th>
+                <th>Valor Total</th>
+            </tr>
+            </thead>
+
+            <tbody ngInit="produtos.total = 0">
+            <tr *ngFor="#produto of produtos">
+                <td>{{ produto.nome }}</td>
+                <td>
+                    <select class="form-control" [(ngModel)]="produto.quantidade">
+                        <option value="1">1</option>
+                        <option value="2">2</option>
+                        <option value="3">3</option>
+                        <option value="4">4</option>
+                        <option value="5">5</option>
+                    </select>
+                </td>
+                <td>
+                    R$ {{ produto.valor }}
+                </td>
+                <td>
+                    R$ {{ produto.valor * produto.quantidade }}
+                </td>
+            </tr>
+            </tbody>
+
+            <tfoot>
+            <tr>
+                <td colspan="2"></td>
+                <td>
+                    R$ {{ total() }}
+                </td>
+                <td>
+                    R$ {{ total(true) }}
+                </td>
+            </tr>
+            </tfoot>
+        </table>
+    </section>
+
+    <section>
+        <h4>Forma de Pagamento</h4>
+
+        <div class="row">
+            <div *ngFor="#bandeira in bandeiras">{{ bandeira.nome }}</div>
+        </div>
+
+        <div>
+            <ul>
+                <li>À vista</li>
+                <li>2x de R$400</li>
+                <li>3x de R$400</li>
+                <li>4x de R$400</li>
+            </ul>
+        </div>
+    </section>
+
+    <section>
+        <h4>Finalizar pedido</h4>
+
+        <div class="text-center">
+            <button class="btn btn-success">
+                <i class="fa fa-check"></i>
+                Confirmar
+            </button>
+        </div>
+    </section>
+</div>

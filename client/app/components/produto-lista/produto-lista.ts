@@ -4,24 +4,28 @@ import {Input} from "angular2/core";
 
 @Component({
     selector: "produto-lista",
-    templateUrl: "./app/components/produto-lista/lista.html",
-    inputs: ['filtro']
+    templateUrl: "./app/components/produto-lista/produto-lista.html",
+    inputs: ['filtro', 'query']
 })
 
 export class ProdutoListaComponent {
 
     public produtos;
-    @Input set filtro(obj){
-        this.filter(obj);
+    @Input() set filtro(filter) {
+        this.produtoService.filter(filter);
     };
 
-    constructor(private produtoService: ProdutoService) {
+    @Input() set query(query) {
+        this.produtoService.query(query);
     }
 
-    public filter(filter){
-        this.produtoService.filter(filter).subscribe(
+    ngOnInit() {
+        this.produtoService.exec().subscribe(
             data => this.produtos = data
         );
+    }
+
+    constructor(private produtoService: ProdutoService) {
     }
 
 
