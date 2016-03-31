@@ -12,7 +12,7 @@
             </tr>
             </thead>
 
-            <tbody ngInit="produtos.total = 0">
+            <tbody>
             <tr *ngFor="#produto of produtos">
                 <td>{{ produto.nome }}</td>
                 <td>
@@ -51,7 +51,7 @@
         <h4>Forma de Pagamento</h4>
 
         <div class="row">
-            <div *ngFor="#bandeira in bandeiras">{{ bandeira.nome }}</div>
+            <div *ngFor="#bandeira of bandeiras">{{ bandeira.nome }}</div>
         </div>
 
         <div>
@@ -67,7 +67,7 @@
     <section>
         <h4>Finalizar pedido</h4>
 
-        <div class="text-center">
+        <div class="center">
             <button class="btn btn-success">
                 <i class="fa fa-check"></i>
                 Confirmar
