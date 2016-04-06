@@ -10,5 +10,5 @@ import 'rxjs/add/operator/map';
 bootstrap(MasterComponent, [
     ROUTER_PROVIDERS,
     HTTP_PROVIDERS,
-    ProdutoService
+    ProdutoService,
 ]);

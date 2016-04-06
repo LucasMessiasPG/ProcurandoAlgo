@@ -17,10 +17,12 @@ class BasicApi
      */
     public function handle($request, Closure $next)
     {
-        if(Auth::basic('login'))
+
+        return $next($request);
+        if(\Auth::basic('login'))
         {
             abort(403);
         }
-        return $next($request);
+
     }
 }

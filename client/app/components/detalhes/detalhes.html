@@ -1,0 +1,33 @@
+<div class="row">
+	<div class="col-sm-6" *ngIf="produto">
+		<div class="col-sm-4">
+			<img src="{{ produto.link }}" alt="">
+		</div>
+		<div class="col-sm-8">
+			<div>
+				<h3>{{ produto.nome }}</h3>
+				<p>{{ produto.descricao }}</p>
+				<p>{{ produto.valor_unitario }}</p>
+			</div>
+		</div>
+	</div>
+	<div class="col-sm-6 border-left heigth100">
+		<button class="btn btn-success btn-custom center-block vertical">Comprar</button>
+	</div>
+</div>
+<div class="row">
+	<ul class="nav nav-tabs">
+		<li class="nav-item">
+			<a class="nav-link" [class.active]="tab == 'descricao'" (click)="menu('descricao')">Descricao</a>
+		</li>
+		<li class="nav-item">
+			<a class="nav-link" [class.active]="tab == 'comentarios'" (click)="menu('comentarios')">Comentarios</a>
+		</li>
+	</ul>
+	<div *ngIf="tab == 'descricao'">
+		<p *ngIf="produto">{{ produto.descricao_completa }}</p>
+	</div>
+	<div *ngIf="tab == 'comentarios'">
+		Seja o primeiro a comentar
+	</div>
+</div>

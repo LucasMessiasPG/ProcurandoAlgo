@@ -29,3 +29,13 @@ $factory->define(App\Models\Cliente::class, function (Faker\Generator $faker) {
       'remember_token' => str_random(10),
     ];
 });
+
+$factory->define(App\Models\Produto::class, function (Faker\Generator $faker) {
+    return [
+      'nome' => $faker->name,
+      'descricao' => $faker->userName,
+      'senha' => bcrypt(str_random(10)),
+      'email' => bcrypt(str_random(10)),
+      'remember_token' => str_random(10),
+    ];
+});

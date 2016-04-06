@@ -7,6 +7,10 @@ Route::post('/api/pessoa',function(\Illuminate\Http\Request $request){
     ];
 });
 
+Route::get('/',function(){
+   return \Hash::make('123456');
+});
+
 Route::post('login','AdminController@login');
 
 //Rotas protegidas por Basic
@@ -28,6 +32,17 @@ Route::group(['middleware' => ['ws']], function () {
         Route::post('create','UsuarioController@create');
         Route::post('update','UsuarioController@update');
         Route::get('delete/{id}','UsuarioController@destroy');
+    });
+
+    Route::post('busca','PesquisaController@filter');
+    Route::post('destaque','PesquisaController@filterDestaque');
+    Route::post('promocao','PesquisaController@filterPromocao');
+    Route::post('produto','PesquisaController@filterProduto');
+});
+
+Route::group(['prefix'=>'asset'],function(){
+    Route::get('img/{id_produto}/1',function($id_produto){
+        return response(file_get_contents(storage_path('app/img/'.$id_produto.'/1.jpg')),200)->header('Content-Type', 'image/png');
     });
 });
 

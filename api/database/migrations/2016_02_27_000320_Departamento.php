@@ -14,7 +14,7 @@ class Departamento extends Migration
     {
         Schema::create('departamentos', function (Blueprint $t) {
             $t->increments('id_departamento');
-            $t->integer('id_departamento_pai')->unsigned();
+            $t->integer('id_departamento_pai')->nullable()->unsigned();
             $t->string('nome');
             $t->string('descricao');
             $t->timestamps();

@@ -1,0 +1,28 @@
+a{
+    cursor: pointer;
+}
+.btn-custom{
+    height: 30px;
+    padding: 0;
+    width: 250px;
+}
+.heigth100{
+    height: 250px;
+}
+.vertical{
+    margin-top: 100px;
+}
+.border-left{
+    border-left: 1px ridge #000;
+}
+
+.margin-top{
+    margin-top: 10px;
+}
+
+#footer {
+    position: fixed;
+    bottom: 0;
+    background-color: #f7f7f9;
+    width: 100%;
+}
