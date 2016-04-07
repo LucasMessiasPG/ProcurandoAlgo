@@ -12,7 +12,7 @@
 		</div>
 	</div>
 	<div class="col-sm-6 border-left heigth100">
-		<button class="btn btn-success btn-custom center-block vertical">Comprar</button>
+		<button (click)="addCarrinho(produto)" class="btn btn-success btn-custom center-block vertical">Comprar</button>
 	</div>
 </div>
 <div class="row">
@@ -28,6 +28,24 @@
 		<p *ngIf="produto">{{ produto.descricao_completa }}</p>
 	</div>
 	<div *ngIf="tab == 'comentarios'">
-		Seja o primeiro a comentar
+		<form #f="ngForm" (submit)="comentar(f.value)">
+			<label class="col-sm-12">Nome
+				<input class="col-sm-12" type="text" name="nome" ngControl="nome">
+			</label>
+			<label class="col-sm-12">Comentario
+				<textarea style="resize: none" class="col-sm-12" type="text" name="comentario" ngControl="comentario"></textarea>
+			</label>
+			<button type="submit" class="btn btn-success"><i class="fa fa-send"></i> Enviar</button>
+		</form>
+		<div class="card" *ngFor="#comentario of comentarios">
+			<div class="card-block">
+				<h4 class="card-title">
+					<!--<rating [rate]="[rating]"></rating>-->
+					<p>{{ comentario.comentario }}</p>
+				</h4>
+				<p class="card-text">{{ comentario.nome }}</p>
+			</div>
+		</div>
+		<span *ngIf="comentarios.length == 0">Seja o primeiro a comentar</span>
 	</div>
 </div>

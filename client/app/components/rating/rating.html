@@ -1,0 +1,3 @@
+<div *ngIf="stars.length > 0">
+	<span *ngFor="#star of stars"><stars [value]="star" (return)="setRate()"></stars></span>
+</div>

@@ -1,5 +1,5 @@
 <div class="container">
-    <section>
+    <div class="col-sm-7">
         <h4>Produtos no carrinho</h4>
 
         <table class="table table-responsive">
@@ -14,9 +14,9 @@
 
             <tbody>
             <tr *ngFor="#produto of produtos">
-                <td>{{ produto.nome }}</td>
+                <td><a (click)="remove(produto)"><i class="fa fa-close font-red"></i></a> {{ produto.nome }}</td>
                 <td>
-                    <select class="form-control" [(ngModel)]="produto.quantidade">
+                    <select class="form-control"  (change)="onChange($event,produto)">
                         <option value="1">1</option>
                         <option value="2">2</option>
                         <option value="3">3</option>
@@ -25,11 +25,15 @@
                     </select>
                 </td>
                 <td>
-                    R$ {{ produto.valor }}
+                    R$ {{ produto.valor_unitario }}
                 </td>
                 <td>
-                    R$ {{ produto.valor * produto.quantidade }}
-                </td>
+                    R$ {{ (produto.valor_unitario * produto.quantidade).toFixed(2) }}
+
+                <td>
+            </tr>
+            <tr *ngIf="produtos.length == 0">
+                <td colspan="4" class="font-red">Nenhum item adicionado</td>
             </tr>
             </tbody>
 
@@ -37,34 +41,31 @@
             <tr>
                 <td colspan="2"></td>
                 <td>
-                    R$ {{ total() }}
+                    R$ {{ total().toFixed(2) }}
                 </td>
                 <td>
-                    R$ {{ total(true) }}
+                    R$ {{ total(true).toFixed(2) }}
                 </td>
             </tr>
             </tfoot>
         </table>
-    </section>
+    </div>
 
-    <section>
+    <div class="col-sm-5">
         <h4>Forma de Pagamento</h4>
-
-        <div class="row">
-            <div *ngFor="#bandeira of bandeiras">{{ bandeira.nome }}</div>
-        </div>
-
         <div>
             <ul>
-                <li>À vista</li>
-                <li>2x de R$400</li>
-                <li>3x de R$400</li>
-                <li>4x de R$400</li>
+                <li>À vista <small><b>total R$ {{ (total(true) * 0.95).toFixed(2) }}</b></small> <p class="font-red">DESCONTO DE R$ {{ (total(true) * 0.05).toFixed(2) }}</p></li>
+                <li *ngFor="#x of parcelas">{{x}}x de R$ {{ ((x>9)?(total(true) / x) * 1.04 :total(true) / x).toFixed(2) }} <small>total: R$ {{ ((x>9)?(total(true)) * 1.04 :total(true)).toFixed(2) }}</small></li>
             </ul>
         </div>
-    </section>
+    </div>
 
-    <section>
+    <div class="col-sm-12">
+        selecione a forma de pagamento
+    </div>
+
+    <div class="col-sm-12">
         <h4>Finalizar pedido</h4>
 
         <div class="center">
@@ -73,5 +74,5 @@
                 Confirmar
             </button>
         </div>
-    </section>
+    </div>
 </div>

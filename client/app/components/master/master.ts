@@ -23,6 +23,7 @@ enableProdMode();
     {path: "/departamento/:id_departamento", name: "Departamento", component: DepartamentoComponent},
     {path: "/busca/:texto", name: "Busca", component: BuscaComponent},
     {path: "/carrinho", name:"Carrinho", component: CarrinhoComponent},
+    {path: "/carrinho/:id_produto", name:"AddCarrinho", component: CarrinhoComponent},
     {path: "/detalhes/:id_produto", name:"Detalhes", component: DetalhesComponent}
 ])
 

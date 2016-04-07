@@ -33,6 +33,12 @@ Route::group(['middleware' => ['ws']], function () {
         Route::post('update','UsuarioController@update');
         Route::get('delete/{id}','UsuarioController@destroy');
     });
+    Route::group(['prefix'=>'comentario'], function(){
+        Route::post('/','ComentarioController@filter');
+        Route::post('create','ComentarioController@create');
+        Route::post('update','ComentarioController@update');
+        Route::get('delete/{id}','ComentarioController@destroy');
+    });
 
     Route::post('busca','PesquisaController@filter');
     Route::post('destaque','PesquisaController@filterDestaque');
