@@ -26,6 +26,10 @@ a{
     background-color: #f7f7f9;
     width: 100%;
 }
+
+.container.margin-top{
+    margin-bottom: 100px !important;
+}
 .font-red{
     color: red;
 }

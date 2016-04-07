@@ -37,14 +37,18 @@ export class DetalhesComponent{
     }
 
     getComentarios(){
-        this.comentarioService.query('').filter({id_produto:this.routeParams.get('id_produto')}).exec().subscribe(
+            this.comentarioService.query('').filter({id_produto:this.routeParams.get('id_produto')}).exec().subscribe(
             data => this.comentarios = data.filtro.reverse()
         );
     }
 
     set(produto){
-        this.produto = produto[0];
-        this.produto.link = 'http://localhost:8000/asset/img/'+this.produto.id_produto+'/1'
+        if(produto.length > 0) {
+            this.produto = produto[0];
+            this.produto.link = 'http://localhost:8000/asset/img/' + this.produto.id_produto + '/1'
+        }else{
+            this.router.navigateByUrl('')
+        }
     }
 
     menu(menu){
