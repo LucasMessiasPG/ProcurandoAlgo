@@ -35,12 +35,17 @@
 			<label class="col-sm-12">Comentario
 				<textarea style="resize: none" class="col-sm-12" type="text" name="comentario" ngControl="comentario"></textarea>
 			</label>
+			<label class="col-sm-12">Nota
+				<input type="number" min="1" max="5" name="rate" ngControl="rate" value="3">
+			</label>
 			<button type="submit" class="btn btn-success"><i class="fa fa-send"></i> Enviar</button>
 		</form>
 		<div class="card" *ngFor="#comentario of comentarios">
 			<div class="card-block">
 				<h4 class="card-title">
-					<rating [rate]="[rating]"></rating>
+					<p>
+						<span *ngFor="#i of comentario.rating"><i class="fa" [class.fa-star]="i.rate" [class.fa-star-o]="!i.rate"></i></span>
+					</p>
 					<p>{{ comentario.comentario }}</p>
 				</h4>
 				<p class="card-text">{{ comentario.nome }}</p>

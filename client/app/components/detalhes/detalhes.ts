@@ -3,11 +3,9 @@ import {RouteParams} from "angular2/router";
 import {ProdutoService} from "../../services/Produto";
 import {Router} from "angular2/router";
 import {ComentarioService} from "../../services/comentario";
-import {RateComponent} from "../rating/rating";
 
 @Component({
     templateUrl:'../app/components/detalhes/detalhes.html',
-    directives:[RateComponent],
     providers:[ProdutoService,ComentarioService]
 })
 export class DetalhesComponent{
@@ -16,7 +14,6 @@ export class DetalhesComponent{
     public comentarios;
     public filtro;
     public tab;
-    public rating = [{rate:true},{rate:true},{rate:true},{rate:false},{rate:false}];
 
     constructor(
         private routeParams: RouteParams,
@@ -38,7 +35,24 @@ export class DetalhesComponent{
 
     getComentarios(){
             this.comentarioService.query('').filter({id_produto:this.routeParams.get('id_produto')}).exec().subscribe(
-            data => this.comentarios = data.filtro.reverse()
+            data => {
+                this.comentarios = data.filtro.reverse()
+
+                for (var i in this.comentarios) {
+                    var rating = [];
+
+                    for (var nota = 0;nota < 5; nota++) {
+                        if(nota < this.comentarios[i].rate)
+                            rating.push({rate:true});
+                        else
+                            rating.push({rate:false});
+                    }
+
+                    this.comentarios[i].rating = rating;
+                }
+
+                return this.comentarios;
+            }
         );
     }
 
