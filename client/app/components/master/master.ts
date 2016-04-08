@@ -6,6 +6,7 @@ import {enableProdMode} from "angular2/core";
 import {BuscaComponent} from "../busca/busca";
 import {CarrinhoComponent} from "../carrinho/carrinho";
 import {DetalhesComponent} from "../detalhes/detalhes";
+import {FinalizarComponent} from "../finalizar/finalizar";
 
 //Aplicação em Produção
 enableProdMode();
@@ -23,8 +24,8 @@ enableProdMode();
     {path: "/departamento/:id_departamento", name: "Departamento", component: DepartamentoComponent},
     {path: "/busca/:texto", name: "Busca", component: BuscaComponent},
     {path: "/carrinho", name:"Carrinho", component: CarrinhoComponent},
-    {path: "/carrinho/:id_produto", name:"AddCarrinho", component: CarrinhoComponent},
-    {path: "/detalhes/:id_produto", name:"Detalhes", component: DetalhesComponent}
+    {path: "/detalhes/:id_produto", name:"Detalhes", component: DetalhesComponent},
+    {path: "/compra-efetuada", name:"Finalizar", component: FinalizarComponent}
 ])
 
 export class MasterComponent {

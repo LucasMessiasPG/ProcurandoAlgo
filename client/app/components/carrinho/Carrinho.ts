@@ -1,10 +1,13 @@
 import {Component} from "angular2/core";
 import {RouteParams} from "angular2/router";
 import {ProdutoService} from "../../services/Produto";
+import {ROUTER_DIRECTIVES} from "angular2/router";
+import {Router} from "angular2/router";
 declare var $:any;
 
 @Component({
     templateUrl: "./app/components/carrinho/carrinho.html",
+    directives:[ROUTER_DIRECTIVES],
     providers:[ProdutoService]
 })
 
@@ -23,7 +26,7 @@ export class CarrinhoComponent {
         }
     ];
 
-    constructor(private routeParams: RouteParams, private produtoService: ProdutoService){
+    constructor(private routeParams: RouteParams, private produtoService: ProdutoService,private router: Router){
         if(localStorage.getItem('produto') == null){
             localStorage.setItem('produto',JSON.stringify([]))
         }
@@ -47,5 +50,14 @@ export class CarrinhoComponent {
 
     onChange(newValue,produto) {
         this.produtos[this.produtos.indexOf(produto)].quantidade = newValue.target.value;
+    }
+
+    finalizar(form){
+        localStorage.setItem('venda',JSON.stringify(form))
+        this.router.navigateByUrl('compra-efetuada')
+    }
+
+    selectCartao(value){
+        console.log(value);
     }
 }

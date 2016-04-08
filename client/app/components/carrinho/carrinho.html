@@ -51,7 +51,7 @@
         </table>
     </div>
 
-    <div class="col-sm-5">
+    <div class="col-sm-5" *ngIf="produtos.length > 0">
         <h4>Forma de Pagamento</h4>
         <div>
             <ul>
@@ -61,18 +61,55 @@
         </div>
     </div>
 
-    <div class="col-sm-12">
-        selecione a forma de pagamento
-    </div>
+    <form #f="ngForm" (submit)="finalizar(f.value)" *ngIf="produtos.length > 0">
+        <div class="col-sm-12">
+            <div class="col-sm-12">
+                <h4>Forma de pagamento</h4>
+                <label class="col-sm-3">Carão
+                    <select required ngControl="cartao" #t (change)="selectCartao(t.value)" name="cartao" class="form-control">
+                        <option *ngFor="#x of bandeiras" [value]="x.nome">{{ x.nome }}</option>
+                    </select>
 
-    <div class="col-sm-12">
-        <h4>Finalizar pedido</h4>
-
-        <div class="center">
-            <button class="btn btn-success">
-                <i class="fa fa-check"></i>
-                Confirmar
-            </button>
+                </label>
+                <label class="col-sm-3">Parcelas
+                    <select required ngControl="percelas" class="form-control">
+                        <option *ngFor="#x of parcelas" [value]="x">{{ x }}x</option>
+                    </select>
+                </label>
+            </div>
+            <br/>
+            <div class="col-sm-12">
+                <h4>Endereço para ENTREGA</h4>
+                <label class="col-sm-3">Endereço
+                    <input required ngControl="endereco" class="form-control" type="text">
+                </label>
+                <label class="col-sm-3">Numero
+                    <input required ngControl="numero" class="form-control" type="text">
+                </label>
+                <label class="col-sm-3">Bairro
+                    <input required ngControl="bairro" class="form-control" type="text">
+                </label>
+                <label class="col-sm-3">CEP
+                    <input required ngControl="cep" class="form-control" type="text">
+                </label>
+                <label class="col-sm-3">Cidade
+                    <input required ngControl="cidade" class="form-control" type="text">
+                </label>
+                <label class="col-sm-3">UF
+                    <input required ngControl="uf" class="form-control" type="text">
+                </label>
+            </div>
         </div>
-    </div>
+        <br/>
+        <div class="col-sm-12">
+            <h4>Finalizar pedido</h4>
+
+            <div class="center">
+                <button [disabled]="produtos.length == 0"  type="submit" class="btn btn-success">
+                    <i class="fa fa-check"></i>
+                    Confirmar
+                </button>
+            </div>
+        </div>
+    </form>
 </div>

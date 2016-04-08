@@ -1,0 +1,19 @@
+<div class="jumbotron">
+	<h2>Compra Efetuada</h2>
+
+	<p>Obrigado pela preferencia</p>
+	<br/>
+	<h3>Endereço Para entrega</h3>
+	<div *ngIf="dados">
+		<p>CEP {{ dados.cep }}</p>
+		<p>Rua {{ dados.endereco }}</p>
+		<p>Numero {{ dados.numero}}</p>
+		<p>Bairro {{ dados.bairro }}</p>
+		<p>Cidade {{ dados.cidade }}</p>
+		<p>Estado {{ dados.uf }}</p>
+	</div>
+</div>
+
+<div>
+	<a class="center-block" [routerLink]="['Home']" class="btn btn-success">Click Aqui para voltar a loja</a>
+</div>
