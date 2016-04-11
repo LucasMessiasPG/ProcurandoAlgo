@@ -7,5 +7,5 @@ use Illuminate\Database\Eloquent\Model;
 class Comentario extends Model
 {
 	public $primaryKey = 'id_comentario';
-	public $fillable = ['comentario','nome','id_produto'];
+	public $fillable = ['comentario','nome','id_produto','rate'];
 }

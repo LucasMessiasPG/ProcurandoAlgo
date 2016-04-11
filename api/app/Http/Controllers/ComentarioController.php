@@ -20,6 +20,7 @@ class ComentarioController extends Controller
 				'nome' => 'required|min:1|max:50',
 				'comentario' => 'required|min:1|max:200',
 				'id_produto' => 'required',
+				'rate' => 'required|numeric|min:1|max:5',
 			]);
 
 			$params = $request->all();
