@@ -4,7 +4,7 @@ developers:
 Lucas Messias
 Jonas Tortato
 
-Projeto da diciplina de E-commerse faculdade Unopar
+Projeto da diciplina de E-commerse faculdade Unopar (07/04/2016)
 
 objetivo: desenvolver a base de um e-commerse seguindo as regras dadas pelo professor
 
