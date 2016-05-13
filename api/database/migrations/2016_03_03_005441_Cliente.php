@@ -18,6 +18,7 @@ class Cliente extends Migration
             $t->string('email');
             $t->string('login');
             $t->string('senha');
+            $t->string('remember_token');
             $t->timestamps();
         });
     }

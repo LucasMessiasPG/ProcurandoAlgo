@@ -3,9 +3,11 @@ import {RouteParams} from "angular2/router";
 import {ProdutoService} from "../../services/Produto";
 import {Router} from "angular2/router";
 import {ComentarioService} from "../../services/comentario";
+import {ValorPipe} from "../../pipe/valor";
 
 @Component({
     templateUrl:'../app/components/detalhes/detalhes.html',
+    pipes:[ValorPipe],
     providers:[ProdutoService,ComentarioService]
 })
 export class DetalhesComponent{

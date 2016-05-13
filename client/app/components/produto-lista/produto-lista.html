@@ -1,14 +1,11 @@
 <div class="row" *ngIf="(produtos && produtos.length > 0)">
     <div  class="col-sm-3" *ngFor="#produto of produtos">
-        <img src="http://localhost:8000/asset/img/{{ produto.id_produto }}/1" alt="">
-        <h3>{{ produto.nome }} <i class="fa" [class.fa-thumbs-o-up]="produto.recomendado"></i></h3>
-        <div>
-            <img alt="" *ngSrc="">
-        </div>
+        <img class="img-list" src="{{ produto.img }}" alt="">
+        <h3 title="{{ produto.nome }}"><a [routerLink]="['Detalhes', {id_produto: produto.id_produto}]">{{ produto.nome  | truncate: 10  }} <i class="fa" [class.fa-thumbs-o-up]="produto.recomendado"></i></a></h3>
 
-        <p>{{ produto.descricao }}</p>
+        <p>{{ produto.descricao | truncate: 20 }}</p>
 
-        <p>R$ {{ produto.valor_unitario }}</p>
+        <p>R$ {{ produto.valor_unitario | valor:'R$' }}</p>
         <p>
             <a class="btn btn-info" [routerLink]="['Detalhes', {id_produto: produto.id_produto}]"><i class="fa fa-search-plus"></i> Datalhes</a>
             <a class="btn btn-success" (click)="addCarrinho(produto)"><i class="fa fa-dollar"></i> Comprar</a>

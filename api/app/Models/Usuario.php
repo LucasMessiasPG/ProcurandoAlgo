@@ -10,7 +10,7 @@ class Usuario extends Authenticatable
 
 	public $primaryKey = 'id_usuario';
 	protected $hidden = ['senha','remember_token'];
-	public $fillable = ['nome','login','senha','id_permissao'];
+	public $fillable = ['nome','email','senha','id_permissao'];
 
 	public function _login($usuario)
 	{

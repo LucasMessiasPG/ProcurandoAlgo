@@ -7,10 +7,12 @@ import {provide} from "angular2/core";
 import {HashLocationStrategy} from "angular2/router";
 import 'rxjs/add/operator/map';
 import {ComentarioService} from "./services/comentario";
+import {UsuarioService} from "./services/usuario";
 
 bootstrap(MasterComponent, [
     ROUTER_PROVIDERS,
     HTTP_PROVIDERS,
     ProdutoService,
-    ComentarioService
+    ComentarioService,
+    UsuarioService
 ]);

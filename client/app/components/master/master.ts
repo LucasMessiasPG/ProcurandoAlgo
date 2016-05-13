@@ -7,6 +7,7 @@ import {BuscaComponent} from "../busca/busca";
 import {CarrinhoComponent} from "../carrinho/carrinho";
 import {DetalhesComponent} from "../detalhes/detalhes";
 import {FinalizarComponent} from "../finalizar/finalizar";
+import {LoginComponent} from "../login/login";
 
 //Aplicação em Produção
 enableProdMode();
@@ -21,6 +22,7 @@ enableProdMode();
 
 @RouteConfig([
     {path: "/", name: "Home", component: HomeComponent},
+    {path: "/login", name: "Login", component: LoginComponent},
     {path: "/departamento/:id_departamento", name: "Departamento", component: DepartamentoComponent},
     {path: "/busca/:texto", name: "Busca", component: BuscaComponent},
     {path: "/carrinho", name:"Carrinho", component: CarrinhoComponent},

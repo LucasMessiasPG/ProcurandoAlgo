@@ -33,3 +33,8 @@ a{
 .font-red{
     color: red;
 }
+
+.img-list{
+    width: 60px;
+    height: 60px;
+}

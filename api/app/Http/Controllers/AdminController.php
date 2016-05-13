@@ -52,4 +52,30 @@ class AdminController extends Controller
 			dd($e->getMessage());
 		}
 	}
+
+	public function register(Request $request)
+	{
+		try{
+
+			$rules = [
+				'nome'=>'required|min:3|max:20',
+				'email'=>'required|email',
+				'senha'=>'required|size:6|confirmed',
+				'senha_confirmation','required'
+			];
+
+			$validation = \Validators::make($request->all(),$rules);
+
+			if($validation->fails())
+				throw new Exception('Required: '.implode(',',$validation->errors()->all()));
+
+			$user = $request->all();
+			$user['senha'] = \Hash::make($user['senha']);
+			Usuario::create($user);
+
+			return $this->_return('success','Usuario registrado');
+		}catch (\Exception $e){
+			return $this->_return('error',$e->getMessage());
+		}
+	}
 }

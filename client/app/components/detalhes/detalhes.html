@@ -1,13 +1,13 @@
 <div class="row">
 	<div class="col-sm-6" *ngIf="produto">
 		<div class="col-sm-4">
-			<img src="{{ produto.link }}" alt="">
+			<img src="{{ produto.img }}" alt="{{ produto.descricao }}">
 		</div>
 		<div class="col-sm-8">
 			<div>
 				<h3>{{ produto.nome }} <i class="fa" [class.fa-thumbs-o-up]="produto.recomendado"></i></h3>
 				<p>{{ produto.descricao }}</p>
-				<p>{{ produto.valor_unitario }}</p>
+				<p>R$ {{ produto.valor_unitario | valor }}</p>
 			</div>
 		</div>
 	</div>

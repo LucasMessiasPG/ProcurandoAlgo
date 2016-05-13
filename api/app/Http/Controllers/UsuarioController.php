@@ -14,26 +14,36 @@ class UsuarioController extends Controller
 
 	private $model = 'usuario';
 
+	/**
+	 * @param Request $request
+	 * @return array
+	 * @throws Exception
+	 */
 	public function create(Request $request)
 	{
 		try{
 
-			$this->validate($request,[
-				'nome' => 'required|min:4|max:50',
-				'login' => 'required|min:4|max:10',
-				'senha' => 'required|min:6|max:10',
-				'id_permissao' => 'required',
-			]);
+			$rules = [
+				'nome'=>'required|min:3|max:20',
+				'email'=>'required|email',
+				'senha'=>'required|size:6|confirmed',
+				'senha_confirmation'=>'required'
+			];
 
-			$params = $request->all();
 
-			$model = new ucfirst($this->model);
-			$result = $model->create($params);
-			return $this->_return('success',ucfirst($this->model).' cadastrado',['id'=>$result->{'id_'.$this->model}]);
+			$validation = \Validator::make($request->all(),$rules);
 
+			if($validation->fails())
+				throw new \Exception('Required: '.implode(',',$validation->errors()->all()));
+
+			$user = $request->all();
+			$user['senha'] = \Hash::make($user['senha']);
+			Usuario::create($user);
+
+			return $this->_return('success','Usuario registrado');
 		}catch (\Exception $e){
 			$this->_logErro($e);
-			return $this->_return('error','Erro ao cadastrar '.$this->model,['error'=>$e->getMessage()]);
+			return $this->_return('error',$e->getMessage());
 		}
 	}
 

@@ -33,8 +33,7 @@ class Controller extends BaseController
     {
         $log['descricao'] = "Error: ".$e->getMessage().'; Linha: '.$e->getLine().'; File: '.$e->getFile();
         $log['id_usuario'] =  1;//Auth::user()->id_usuario;
-        dd($log);
-        $l = new Log();
-        $l->create($log);
+//        $l = new Log();
+//        $l->create($log);
     }
 }

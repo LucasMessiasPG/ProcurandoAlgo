@@ -3,10 +3,13 @@ import {ProdutoService} from "../../services/produto";
 import {Input} from "angular2/core";
 import {ROUTER_DIRECTIVES} from "angular2/router";
 import {Router} from "angular2/router";
+import {TruncatePipe} from "../../pipe/truncate";
+import {ValorPipe} from "../../pipe/valor";
 
 @Component({
     selector: "produto-lista",
     templateUrl: "./app/components/produto-lista/produto-lista.html",
+    pipes:[TruncatePipe,ValorPipe],
     directives:[ROUTER_DIRECTIVES],
     inputs: ['query','filtro']
 })

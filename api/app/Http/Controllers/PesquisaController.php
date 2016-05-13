@@ -63,6 +63,7 @@ class PesquisaController extends Controller
 				->select('produtos.*')
 				->join('produtos', 'produtos.id_produto', '=', 'produto_departamento.id_produto')
 				->where('id_departamento', '=', $request->id_departamento)
+				->take(10)
 				->get()->toArray();
 
 			return $produtos;
@@ -77,18 +78,21 @@ class PesquisaController extends Controller
 		$result = Produto::
 			where('produtos.promocao','=',true)
 			->where(function($q) use($campos,$request){
-			foreach ($request->all() as $post) {
-				if(is_string($post)){
-					foreach ($campos['produtos'] as $produto => $tipo) {
-						foreach ($tipo as $item) {
-							if($item == 'texto'){
-								$q->orWhere($produto,'ilike','%'.$post.'%');
+				foreach ($request->all() as $post) {
+					if(is_string($post)){
+						foreach ($campos['produtos'] as $produto => $tipo) {
+							foreach ($tipo as $item) {
+								if($item == 'texto'){
+									$q->orWhere($produto,'ilike','%'.$post.'%');
+								}
 							}
 						}
 					}
 				}
-			}
-		})->get()->toArray();
+			})
+			->take(8)
+			->orderBy(\DB::raw('RANDOM()'))
+			->get()->toArray();
 
 		return $result;
 	}
@@ -101,6 +105,7 @@ class PesquisaController extends Controller
 				->select('produtos.*')
 				->join('produtos', 'produtos.id_produto', '=', 'produto_departamento.id_produto')
 				->where('id_departamento', '=', $request->id_departamento)
+				->take(10)
 				->get()->toArray();
 
 			return $produtos;
@@ -128,7 +133,10 @@ class PesquisaController extends Controller
 
 					}
 				}
-			})->get()->toArray();
+			})
+			->take(8)
+			->orderBy(\DB::raw('RANDOM()'))
+			->get()->toArray();
 
 		return $result;
 	}
