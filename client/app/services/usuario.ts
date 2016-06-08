@@ -23,7 +23,7 @@ export class UsuarioService{
         return Object.keys(obj).reduce(function(a,k){a.push(k+'='+encodeURIComponent(obj[k]));return a},[]).join('&')
     }
 
-    create(user){
+    public create(user){
         var header = new Headers();
         header.append('Content-type','application/x-www-form-urlencoded')
         return this.http.post(this.urlBase+'usuario/create', this.serialize(user),{headers:header}).map(res=>res.json());
