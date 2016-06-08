@@ -30,6 +30,11 @@ Route::group(['middleware' => ['ws']], function () {
         Route::post('update','UsuarioController@update');
         Route::get('delete/{id}','UsuarioController@destroy');
     });
+    Route::group(['prefix'=>'pedido-produto'], function(){
+        Route::post('create','PedidoProdutoController@create');
+        Route::post('update','UsuarioController@update');
+        Route::get('delete/{id}','UsuarioController@destroy');
+    });
     Route::group(['prefix'=>'comentario'], function(){
         Route::post('/','ComentarioController@filter');
         Route::post('create','ComentarioController@create');
