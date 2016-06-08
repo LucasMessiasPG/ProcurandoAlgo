@@ -58,7 +58,7 @@ class PedidoProdutoController extends Controller
 	public function filter(Request $request)
 	{
 		try{
-			$model = new ucfirst($this->model);
+			$model = new PedidoProduto();
 			$filtro = $model
 				->where(function($q)use($request){
 					foreach ($request->all() as $key=>$filter) {
@@ -66,12 +66,16 @@ class PedidoProdutoController extends Controller
 							case 'nome':
 								$q->where($key, 'ilike', "%".$filter."%");
 								break;
+							case 'id_usuario':
+								$q->where('pedido'.$key, '=', $filter);
+								break;
 							default:
 								$q->where($key, '=', $filter);
 								break;
 						}
 					}
 				})
+				->join('pedido','pedido.id_pedido','=','pedido_produto.id_pedido')
 				->get()
 				->toArray();
 
