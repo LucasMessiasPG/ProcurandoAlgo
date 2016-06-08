@@ -72,6 +72,8 @@ export class LoginComponent{
                     this._usuarioService.setUser(response.user);
 
                     user = {};
+
+                    this._router.navigateByUrl('/');
                 }
             });
         }

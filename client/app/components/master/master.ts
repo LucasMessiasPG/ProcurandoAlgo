@@ -11,6 +11,7 @@ import {LoginComponent} from "../login/login";
 import {UsuarioService} from "../../services/usuario";
 import {DepartamentoService} from "../../services/depatamento.service";
 import {ToastListComponent} from "../toast/toast-list.component";
+import {HistoricoComponent} from "../historico/historico";
 
 //Aplicação em Produção
 enableProdMode();
@@ -31,7 +32,8 @@ enableProdMode();
     {path: "/busca/:texto", name: "Busca", component: BuscaComponent},
     {path: "/carrinho", name:"Carrinho", component: CarrinhoComponent},
     {path: "/detalhes/:id_produto", name:"Detalhes", component: DetalhesComponent},
-    {path: "/compra-efetuada", name:"Finalizar", component: FinalizarComponent}
+    {path: "/compra-efetuada", name:"Finalizar", component: FinalizarComponent},
+    {path: "/historico", name:"Historico", component: HistoricoComponent},
 ])
 
 export class MasterComponent {

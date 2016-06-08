@@ -121,18 +121,18 @@
                 <input class="form-control" type="text" [(ngModel)]="pagamento.nome_cartao">
             </label>
             <label class="col-sm-3">Numero no cartão
-                <input class="form-control" type="text" [(ngModel)]="pagamento.num_cartao">
+                <input class="form-control" type="text" [(ngModel)]="pagamento.num_cartao" procurandoalgo-cartao minlength="14" maxlength="14">
             </label>
             <label class="col-sm-3">Código segurança
-                <input class="form-control" type="text" [(ngModel)]="pagamento.cvc">
+                <input class="form-control" type="text" [(ngModel)]="pagamento.cvc" minlength="3" maxlength="3">
             </label>
             <div class="col-sm-3">
                 <label class="col-sm-6">Mês
-                    <input class="form-control" type="text" [(ngModel)]="pagamento.mes_cartao">
+                    <input class="form-control" type="text" [(ngModel)]="pagamento.mes_cartao" minlength="2" maxlength="2">
                 </label>
 
                 <label class="col-sm-6">Ano
-                    <input class="form-control" type="text" [(ngModel)]="pagamento.ano_cartao">
+                    <input class="form-control" type="text" [(ngModel)]="pagamento.ano_cartao" minlength="2" maxlength="2">
                 </label>
             </div>
             <label class="col-sm-3">Parcelas

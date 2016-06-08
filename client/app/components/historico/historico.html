@@ -1,0 +1,21 @@
+<div>
+    <h3>Pedidos</h3>
+
+    <table class="table">
+        <thead>
+        <th>Num. pedido</th>
+        <th>Data</th>
+        <th>Status</th>
+        </thead>
+        <tbody>
+        <tr *ngFor="let pedido of pedidos">
+            <td>{{ pedido.id_pedido }}</td>
+            <td>{{ pedido.created_at }}</td>
+            <td>{{ pedido.status_pagamento }}</td>
+        </tr>
+        <tr *ngIf="pedidos.length == 0">
+            <td colspan="3">Nenhum pedido encontrado.</td>
+        </tr>
+        </tbody>
+    </table>
+</div>

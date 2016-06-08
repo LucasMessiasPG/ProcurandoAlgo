@@ -67,7 +67,7 @@ class PedidoProdutoController extends Controller
 								$q->where($key, 'ilike', "%".$filter."%");
 								break;
 							case 'id_usuario':
-								$q->where('pedido'.$key, '=', $filter);
+								$q->where('pedidos.'.$key, '=', $filter);
 								break;
 							default:
 								$q->where($key, '=', $filter);
@@ -75,7 +75,7 @@ class PedidoProdutoController extends Controller
 						}
 					}
 				})
-				->join('pedido','pedido.id_pedido','=','pedido_produto.id_pedido')
+				->join('pedidos','pedidos.id_pedido','=','pedido_produto.id_pedido')
 				->get()
 				->toArray();
 
