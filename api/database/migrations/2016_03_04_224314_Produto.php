@@ -16,12 +16,17 @@ class Produto extends Migration
             $t->increments('id_produto');
             $t->string('nome');
             $t->string('descricao');
+            $t->string('descricao_completa');
+            $t->string('img');
             $t->boolean('destaque');
+            $t->boolean('recomendado');
             $t->boolean('promocao');
             $t->float('valor_unitario',10,2);
             $t->integer('id_marca')->unsigner();
             $t->timestamps();
         });
+
+
     }
 
     /**

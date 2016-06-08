@@ -17,6 +17,9 @@ class Permissao extends Migration
             $t->string('descricao');
             $t->timestamps();
         });
+        Schema::table('usuarios', function (Blueprint $t) {
+            $t->foreign('id_permissao')->references('id_permissao')->on('permissaos')->onDelete('cascade');
+        });
     }
 
     /**

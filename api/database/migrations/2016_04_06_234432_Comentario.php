@@ -16,9 +16,13 @@ class Comentario extends Migration
             $t->increments('id_comentario');
             $t->string('nome');
             $t->string('comentario');
+            $t->integer('rate');
             $t->integer('id_produto')->unsigner();
-            $t->foreign('id_produto')->references('id_produto')->on('produtos');
             $t->timestamps();
+        });
+
+        Schema::table('comentarios',function(Blueprint $t){
+            $t->foreign('id_produto')->references('id_produto')->on('produtos')->onDelete('cascade');
         });
     }
 

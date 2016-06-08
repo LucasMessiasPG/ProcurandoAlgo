@@ -13,22 +13,18 @@ Route::get('/',function(){
 
 Route::post('login','AdminController@login');
 Route::post('register','AdminController@register');
-Route::resource('teste','AdminController');
 
 //Rotas protegidas por Basic
 Route::group(['middleware' => ['ws']], function () {
     Route::group(['prefix'=>'usuario'], function(){
         Route::post('/','UsuarioController@filter');
         Route::post('create','UsuarioController@create');
-//        Route::post('update','Usuphp aarioController@update');
+//        Route::post('update','UsuarioController@update');
         Route::get('delete/{id}','UsuarioController@destroy');
     });
-//    Route::group(['prefix'=>'departamento'], function(){
-//        Route::post('/','DepartamentoController@filter');
-//        Route::post('create','UsuarioController@create');
-//        Route::post('update','UsuarioController@update');
-//        Route::get('delete/{id}','UsuarioController@destroy');
-//    });
+    Route::group(['prefix'=>'departamento'], function(){
+        Route::post('/','DepartamentoController@filter');
+    });
     Route::group(['prefix'=>'pedido'], function(){
         Route::post('create','UsuarioController@create');
         Route::post('update','UsuarioController@update');
@@ -45,6 +41,9 @@ Route::group(['middleware' => ['ws']], function () {
     Route::post('destaque','PesquisaController@filterDestaque');
     Route::post('promocao','PesquisaController@filterPromocao');
     Route::post('produto','PesquisaController@filterProduto');
+
+
+    Route::post('transaction','FinanceiroController@transaction');
 });
 
 Route::group(['prefix'=>'asset'],function(){

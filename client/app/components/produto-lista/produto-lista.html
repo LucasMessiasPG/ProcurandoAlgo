@@ -1,5 +1,5 @@
 <div class="row" *ngIf="(produtos && produtos.length > 0)">
-    <div  class="col-sm-3" *ngFor="#produto of produtos">
+    <div  class="col-sm-3" *ngFor="let produto of produtos">
         <img class="img-list" src="{{ produto.img }}" alt="">
         <h3 title="{{ produto.nome }}"><a [routerLink]="['Detalhes', {id_produto: produto.id_produto}]">{{ produto.nome  | truncate: 10  }} <i class="fa" [class.fa-thumbs-o-up]="produto.recomendado"></i></a></h3>
 

@@ -8,6 +8,9 @@ import {CarrinhoComponent} from "../carrinho/carrinho";
 import {DetalhesComponent} from "../detalhes/detalhes";
 import {FinalizarComponent} from "../finalizar/finalizar";
 import {LoginComponent} from "../login/login";
+import {UsuarioService} from "../../services/usuario";
+import {DepartamentoService} from "../../services/depatamento.service";
+import {ToastListComponent} from "../toast/toast-list.component";
 
 //Aplicação em Produção
 enableProdMode();
@@ -16,7 +19,8 @@ enableProdMode();
     selector: "procurandoalgo",
     templateUrl: "./app/components/master/master.html",
     directives: [
-        ROUTER_DIRECTIVES
+        ROUTER_DIRECTIVES,
+        ToastListComponent
     ]
 })
 
@@ -32,31 +36,31 @@ enableProdMode();
 
 export class MasterComponent {
 
-    public departamentos = [
-        {
-            id_departamento: 1,
-            nome: 'Informática'
-        },
-        {
-            id_departamento: 2,
-            nome: 'Celulares'
-        },
-        {
-            id_departamento: 3,
-            nome: 'Instrumetos Músicais'
-        }
-    ];
+    public user;
 
-    constructor(private router: Router) {
+    public departamentos = [];
+
+    constructor(private router: Router,private _usuarioService: UsuarioService, private departamentoService: DepartamentoService) {
         this.router = router;
+        if(this._usuarioService.getUser() != null) {
+            this.user = this._usuarioService.getUser();
+        }
+        this.departamentoService.all().subscribe(res => this.departamentos = res.filtro);
+    }
+
+    ngOnInit(){
+        this._usuarioService.user$.subscribe(user => this.user = user)
     }
 
     public buscar(event, texto) {
         event.preventDefault();
-
         this.router.navigateByUrl("busca/" + texto);
     }
 
-
+    logout(){
+        this._usuarioService.logout()
+        this.user = null
+        this.router.navigateByUrl('/')
+    }
 
 }

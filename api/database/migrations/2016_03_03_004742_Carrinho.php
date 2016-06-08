@@ -19,6 +19,11 @@ class Carrinho extends Migration
             $t->timestamp('data_expeira');
             $t->timestamps();
         });
+
+
+//        Schema::table('pedidos', function (Blueprint $t) {
+//            $t->foreign('id_carrinho')->references('id_carrinho')->on('carrinhos')->onDelete('cascade');
+//        });
     }
 
     /**

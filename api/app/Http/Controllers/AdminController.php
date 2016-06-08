@@ -7,6 +7,7 @@ use Illuminate\Http\Request;
 
 use App\Http\Requests;
 use App\Http\Controllers\Controller;
+use Illuminate\Support\Facades\Auth;
 use Mockery\CountValidator\Exception;
 
 class AdminController extends Controller
@@ -14,15 +15,15 @@ class AdminController extends Controller
     public function login(Request $request)
     {
 			try{
-
+//				return \Hash::make('123456');
 		    $this->validate($request,[
-			    'login'=>'required|min:4',
-			    'password'=>'required|min:6'
+			    'email'=>'required|min:4',
+			    'senha'=>'required|min:6'
 		    ]);
 
 				$usuario = new Usuario();
 		    if($usuario->_login($request->all())){
-			    return $this->_return('success','Login Efetuado');
+			    return $this->_return('success','Login Efetuado',['user'=>['nome'=>Auth::user()->nome,'email'=>Auth::user()->email]]);
 		    }else{
 			    return $this->_return('warning','Credenciais invalidas');
 		    }

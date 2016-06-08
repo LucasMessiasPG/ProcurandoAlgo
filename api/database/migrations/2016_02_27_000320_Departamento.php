@@ -19,6 +19,10 @@ class Departamento extends Migration
             $t->string('descricao');
             $t->timestamps();
         });
+
+        Schema::table('departamentos', function (Blueprint $t) {
+            $t->foreign('id_departamento_pai')->references('id_departamento')->on('departamentos')->onDelete('cascade');
+        });
     }
 
     /**

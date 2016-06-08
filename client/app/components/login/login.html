@@ -1,5 +1,5 @@
 <div class="col-md-offset-1 col-md-5">
-	<form class="form-control">
+	<form #l="ngForm" (submit)="login(l.value)" class="form-control">
 		<h4>Login</h4>
 		<div>
 			<label class="col-md-12">Email
@@ -38,7 +38,7 @@
 			</label>
 		</div>
 		<ul *ngIf="errors.length > 0">
-			<li *ngFor="#e of errors">{{ e.error }}</li>
+			<li *ngFor="let e of errors">{{ e.error }}</li>
 		</ul>
 		<button type="submit" class="btn btn-info">Registrar</button>
 	</form>

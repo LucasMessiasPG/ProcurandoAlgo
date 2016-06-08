@@ -14,7 +14,7 @@ class Usuario extends Authenticatable
 
 	public function _login($usuario)
 	{
-		if (Auth::guard('ws')->validate($usuario)) {
+		if (Auth::attempt(['email'=>$usuario['email'],'password'=>$usuario['senha']])) {
 			return true;
 		} else {
 			return false;

@@ -18,6 +18,10 @@ class Log extends Migration
             $t->integer('id_usuario')->unsigned();
             $t->timestamps();
         });
+
+        Schema::table('logs', function (Blueprint $t) {
+            $t->foreign('id_usuario')->references('id_usuario')->on('usuarios')->onDelete('cascade');
+        });
     }
 
     /**

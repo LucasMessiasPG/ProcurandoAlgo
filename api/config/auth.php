@@ -42,7 +42,7 @@ return [
         ],
 
         'ws' => [
-            'driver' => 'token',
+            'driver' => 'session',
             'provider' => 'usuario',
         ],
     ],

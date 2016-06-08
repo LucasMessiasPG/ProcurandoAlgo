@@ -8,7 +8,7 @@ use Illuminate\Http\Request;
 use App\Http\Requests;
 use App\Http\Controllers\Controller;
 
-class DepartamentoControlle extends Controller
+class DepartamentoController extends Controller
 {
 	private $model = 'departamento';
 
@@ -56,17 +56,19 @@ class DepartamentoControlle extends Controller
 	public function filter(Request $request)
 	{
 		try{
-			$model = new ucfirst($this->model);
+			$model = new Departamento();
 			$filtro = $model
 				->where(function($q)use($request){
 					foreach ($request->all() as $key=>$filter) {
-						switch ($key) {
-							case 'nome':
-								$q->where($key, 'ilike', "%".$filter."%");
-								break;
-							default:
-								$q->where($key, '=', $filter);
-								break;
+						if(!empty($filter)) {
+							switch ($key) {
+								case 'nome':
+									$q->where($key, 'ilike', "%" . $filter . "%");
+									break;
+								default:
+									$q->where($key, '=', $filter);
+									break;
+							}
 						}
 					}
 				})

@@ -40,11 +40,11 @@
 			</label>
 			<button type="submit" class="btn btn-success"><i class="fa fa-send"></i> Enviar</button>
 		</form>
-		<div class="card" *ngFor="#comentario of comentarios">
+		<div class="card" *ngFor="let comentario of comentarios">
 			<div class="card-block">
 				<h4 class="card-title">
 					<p>
-						<span *ngFor="#i of comentario.rating"><i class="fa" [class.fa-star]="i.rate" [class.fa-star-o]="!i.rate"></i></span>
+						<span *ngFor="let i of comentario.rating"><i class="fa" [class.fa-star]="i.rate" [class.fa-star-o]="!i.rate"></i></span>
 					</p>
 					<p>{{ comentario.comentario }}</p>
 				</h4>

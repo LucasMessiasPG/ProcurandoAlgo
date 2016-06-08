@@ -5,12 +5,11 @@
 	<br/>
 	<h3>Endereço Para entrega</h3>
 	<div *ngIf="dados">
-		<p>CEP {{ dados.cep }}</p>
-		<p>Rua {{ dados.endereco }}</p>
-		<p>Numero {{ dados.numero}}</p>
-		<p>Bairro {{ dados.bairro }}</p>
-		<p>Cidade {{ dados.cidade }}</p>
-		<p>Estado {{ dados.uf }}</p>
+		<p>Numero pedido <strong>{{ dados.json.num_pedido }}</strong></p>
+		<p>Numero Autenticação <strong>{{ dados.json.num_autenticacao }}</strong></p>
+		<p>Numero Autorização <strong>{{ dados.json.num_autorizacao }}</strong></p>
+		<p>Valor <strong>{{ dados.json.valor | valor }}</strong></p>
+		<p>Parcelas <strong>{{ dados.json.parcelas }}</strong></p>
 	</div>
 </div>
 

@@ -16,4 +16,4 @@ angular 2.0 (ainda em beta ate o momento do desenvolvimento)
 
 para o BACK-END
 api com framework laravel 5.2
-banco de dados postgres
+banco de dados postgreSQL

@@ -13,7 +13,7 @@
             </thead>
 
             <tbody>
-            <tr *ngFor="#produto of produtos">
+            <tr *ngFor="let produto of produtos">
                 <td><a (click)="remove(produto)"><i class="fa fa-close font-red"></i></a> {{ produto.nome }}</td>
                 <td>
                     <select class="form-control"  (change)="onChange($event,produto)">
@@ -25,10 +25,10 @@
                     </select>
                 </td>
                 <td>
-                    R$ {{ produto.valor_unitario }}
+                    R$ {{ produto.valor_unitario | valor }}
                 </td>
                 <td>
-                    R$ {{ (produto.valor_unitario * produto.quantidade).toFixed(2) }}
+                    R$ {{ (produto.valor_unitario * produto.quantidade).toFixed(2) | valor }}
 
                 <td>
             </tr>
@@ -41,10 +41,10 @@
             <tr>
                 <td colspan="2"></td>
                 <td>
-                    R$ {{ total().toFixed(2) }}
+                    R$ {{ total().toFixed(2) | valor }}
                 </td>
                 <td>
-                    R$ {{ total(true).toFixed(2) }}
+                    R$ {{ total(true).toFixed(2) | valor }}
                 </td>
             </tr>
             </tfoot>
@@ -55,25 +55,25 @@
         <h4>Forma de Pagamento</h4>
         <div>
             <ul>
-                <li>À vista <small><b>total R$ {{ (total(true) * 0.95).toFixed(2) }}</b></small> <p class="font-red">DESCONTO DE R$ {{ (total(true) * 0.05).toFixed(2) }}</p></li>
-                <li *ngFor="#x of parcelas">{{x}}x de R$ {{ ((x>9)?(total(true) / x) * 1.04 :total(true) / x).toFixed(2) }} <small>total: R$ {{ ((x>9)?(total(true)) * 1.04 :total(true)).toFixed(2) }}</small></li>
+                <li>À vista <small><b>total R$ {{ (total(true) * 0.95).toFixed(2) | valor }}</b></small> <p class="font-red">DESCONTO DE R$ {{ (total(true) * 0.05).toFixed(2) | valor }}</p></li>
+                <li *ngFor="let x of parcelas">{{x}}x de R$ {{ ((x>9)?(total(true) / x) * 1.04 :total(true) / x).toFixed(2) | valor }} <small>total: R$ {{ ((x>9)?(total(true)) * 1.04 :total(true)).toFixed(2) | valor }}</small></li>
             </ul>
         </div>
     </div>
 
-    <form #f="ngForm" (submit)="finalizar(f.value)" *ngIf="produtos.length > 0">
+    <!--form #f="ngForm" (submit)="finalizar(f.value)" *ngIf="produtos.length > 0">
         <div class="col-sm-12">
             <div class="col-sm-12">
                 <h4>Forma de pagamento</h4>
                 <label class="col-sm-3">Carão
                     <select required ngControl="cartao" #t (change)="selectCartao(t.value)" name="cartao" class="form-control">
-                        <option *ngFor="#x of bandeiras" [value]="x.nome">{{ x.nome }}</option>
+                        <option *ngFor="let x of bandeiras" [value]="x.nome">{{ x.nome }}</option>
                     </select>
 
                 </label>
                 <label class="col-sm-3">Parcelas
                     <select required ngControl="percelas" class="form-control">
-                        <option *ngFor="#x of parcelas" [value]="x">{{ x }}x</option>
+                        <option *ngFor="let x of parcelas" [value]="x">{{ x }}x</option>
                     </select>
                 </label>
             </div>
@@ -111,5 +111,38 @@
                 </button>
             </div>
         </div>
-    </form>
+    </form-->
+    <div *ngIf="produtos.length > 0">
+        <div class="col-sm-12">
+            <h4>Cartão</h4>
+        </div>
+        <form (submit)="enviar(pagamento)">
+            <label class="col-sm-3">Nome no cartão
+                <input class="form-control" type="text" [(ngModel)]="pagamento.nome_cartao">
+            </label>
+            <label class="col-sm-3">Numero no cartão
+                <input class="form-control" type="text" [(ngModel)]="pagamento.num_cartao">
+            </label>
+            <label class="col-sm-3">Código segurança
+                <input class="form-control" type="text" [(ngModel)]="pagamento.cvc">
+            </label>
+            <div class="col-sm-3">
+                <label class="col-sm-6">Mês
+                    <input class="form-control" type="text" [(ngModel)]="pagamento.mes_cartao">
+                </label>
+
+                <label class="col-sm-6">Ano
+                    <input class="form-control" type="text" [(ngModel)]="pagamento.ano_cartao">
+                </label>
+            </div>
+            <label class="col-sm-3">Parcelas
+                <select class="form-control" [(ngModel)]="pagamento.parcelas">
+                    <option *ngFor="let x of parcelas" value="{{x}}">{{x}}x</option>
+                </select>
+            </label>
+            <div class="col-sm-12">
+                <button class="btn btn-success">Comprar</button>
+            </div>
+        </form>
+    </div>
 </div>

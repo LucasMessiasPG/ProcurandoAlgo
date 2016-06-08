@@ -38,6 +38,7 @@ class UsuarioController extends Controller
 
 			$user = $request->all();
 			$user['senha'] = \Hash::make($user['senha']);
+			$user['id_permissao'] = 1;
 			Usuario::create($user);
 
 			return $this->_return('success','Usuario registrado');

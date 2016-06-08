@@ -10,7 +10,7 @@ use App\Http\Controllers\Controller;
 class PedidoController extends Controller
 {
 
-	private $model = 'departamento';
+	private $model = 'pedido';
 
 	public function create(Request $request)
 	{

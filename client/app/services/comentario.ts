@@ -36,8 +36,7 @@ export class ComentarioService {
         var headers = new Headers();
 
         headers.append('Content-Type', 'application/x-www-form-urlencoded');
-        console.log(this.urlBase + this.url);
-        return this.http.post(this.urlBase + this.url, $.param(this._filter),{headers:headers}).map(
+            return this.http.post(this.urlBase + this.url, $.param(this._filter),{headers:headers}).map(
             res => res.json()
         );
 

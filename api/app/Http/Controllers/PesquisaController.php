@@ -19,7 +19,7 @@ class PesquisaController extends Controller
 		    $prod_dep = new ProdutoDepartamento();
 		    $produtos = $prod_dep
 			    ->select('produtos.*')
-			    ->join('produtos', 'produtos.id_produto', '=', 'produto_departamento.id_produto')
+			    ->join('produtos', 'produtos.id_produto', '=', 'produto_departamentos.id_produto')
 			    ->where('id_departamento', '=', $request->id_departamento)
 			    ->get()->toArray();
 
@@ -61,7 +61,7 @@ class PesquisaController extends Controller
 			$prod_dep = new ProdutoDepartamento();
 			$produtos = $prod_dep
 				->select('produtos.*')
-				->join('produtos', 'produtos.id_produto', '=', 'produto_departamento.id_produto')
+				->join('produtos', 'produtos.id_produto', '=', 'produto_departamentos.id_produto')
 				->where('id_departamento', '=', $request->id_departamento)
 				->take(10)
 				->get()->toArray();
@@ -103,7 +103,7 @@ class PesquisaController extends Controller
 			$prod_dep = new ProdutoDepartamento();
 			$produtos = $prod_dep
 				->select('produtos.*')
-				->join('produtos', 'produtos.id_produto', '=', 'produto_departamento.id_produto')
+				->join('produtos', 'produtos.id_produto', '=', 'produto_departamentos.id_produto')
 				->where('id_departamento', '=', $request->id_departamento)
 				->take(10)
 				->get()->toArray();
