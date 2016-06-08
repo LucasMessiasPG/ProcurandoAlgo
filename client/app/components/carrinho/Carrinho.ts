@@ -106,13 +106,26 @@ export class CarrinhoComponent {
                 headers.append('Content-Type', 'application/x-www-form-urlencoded');
 
                 for(var i in this.produtos) {
-                    var post = {
-                        id_produto:this.produtos[i].id_produto,
-                        id_pedido:data.pedido.id_pedido
+
+                    if(this.produtos[i].quantidade && this.produtos[i].quantidade > 1){
+                        for(var j = 0 ; j < this.produtos[i].quantidade;j++){
+                            var post = {
+                                id_produto: this.produtos[i].id_produto,
+                                id_pedido: data.pedido.id_pedido
+                            }
+                            this.http.post('Http://localhost:8000/pedido-produto/create', $.param(post), {headers: headers})
+                                .map(res => res.json())
+                                .subscribe(res => console.log(res))
+                        }
+                    }else {
+                        var post = {
+                            id_produto: this.produtos[i].id_produto,
+                            id_pedido: data.pedido.id_pedido
+                        }
+                        this.http.post('Http://localhost:8000/pedido-produto/create', $.param(post), {headers: headers})
+                            .map(res => res.json())
+                            .subscribe(res => console.log(res))
                     }
-                    this.http.post('Http://localhost:8000/pedido-produto/create', $.param(post), {headers: headers})
-                        .map(res => res.json())
-                        .subscribe(res => console.log(res))
                 }
             }
             localStorage.removeItem('produto')
