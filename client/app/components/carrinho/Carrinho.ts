@@ -70,6 +70,7 @@ export class CarrinhoComponent {
     }
 
     enviar(pagamento){
+
         var post = {
             'valor':this.total(true).toFixed(2),
             'parcelas':pagamento.parcelas,
@@ -86,7 +87,9 @@ export class CarrinhoComponent {
 
         this.http.post('http://localhost:8000/transaction', $.param(post),{headers:headers})
             .map(res => res.json())
-            .subscribe(data => this.showResult(data));
+            .subscribe(data => this.showResult(data))
+
+
     }
 
     private showResult(data):any {
@@ -94,6 +97,7 @@ export class CarrinhoComponent {
             type: data.status,
             message: data.msg
         }
+        console.log(data);
         this._toast.pop(msg)
         if(msg.type == 'success') {
             localStorage.removeItem('produto')

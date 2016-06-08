@@ -26,7 +26,7 @@ Route::group(['middleware' => ['ws']], function () {
         Route::post('/','DepartamentoController@filter');
     });
     Route::group(['prefix'=>'pedido'], function(){
-        Route::post('create','UsuarioController@create');
+        Route::post('create','PedidoController@create');
         Route::post('update','UsuarioController@update');
         Route::get('delete/{id}','UsuarioController@destroy');
     });

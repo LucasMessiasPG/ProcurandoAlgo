@@ -44,6 +44,7 @@ class FinanceiroController extends Controller
 	    $parser = json_decode($response);
 	    if(isset($parser->status) && isset($parser->cod)) {
 		    if($parser->cod == 0) {
+			    Pedido::create();
 			    return ['status' => 'success', 'msg' => 'Transação aprovada','json'=>$parser];
 		    }else{
 			    return ['status' => 'warning', 'msg' => 'Não autorizado ou dados invalidos','json'=>$parser];

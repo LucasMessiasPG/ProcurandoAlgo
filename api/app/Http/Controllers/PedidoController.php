@@ -23,7 +23,9 @@ class PedidoController extends Controller
 
 			$params = $request->all();
 
-			$model = new ucfirst($this->model);
+			$str = '\\'.ucfirst($this->model);
+			$model = new $str;
+
 			$result = $model->create($params);
 			return $this->_return('success',ucfirst($this->model).' cadastrado',['id'=>$result->{'id_'.$this->model}]);
 
