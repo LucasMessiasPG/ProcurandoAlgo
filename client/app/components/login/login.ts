@@ -64,10 +64,13 @@ export class LoginComponent{
         }
 
         if(this.errors.length == 0){
-            this._usuarioServicce.create(user).subscribe((response) => {
+            this._usuarioService.create(user).subscribe((response) => {
                 if(response.status == 'success') {
                     let toast = {message:'Registro Efeuado',type:'success'}
-                    this._toast.pop(toast)
+                    this._toast.pop(toast);
+
+                    this._usuarioService.setUser(response.user);
+
                     user = {};
                 }
             });

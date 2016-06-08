@@ -155,8 +155,7 @@ return [
         App\Providers\AuthServiceProvider::class,
         App\Providers\EventServiceProvider::class,
         App\Providers\RouteServiceProvider::class,
-        'Tymon\JWTAuth\Providers\JWTAuthServiceProvider',
-        laravel\pagseguro\Platform\Laravel5\ServiceProvider::class
+        'Tymon\JWTAuth\Providers\JWTAuthServiceProvider'
 
         
     ],
@@ -205,7 +204,6 @@ return [
         'Validator' => Illuminate\Support\Facades\Validator::class,
         'View'      => Illuminate\Support\Facades\View::class,
         'JWTAuth'   => 'Tymon\JWTAuth\Facades\JWTAuth',
-        'PagSeguro' => laravel\pagseguro\Platform\Laravel5\PagSeguro::class
     ],
 
 ];
