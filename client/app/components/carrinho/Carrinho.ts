@@ -97,7 +97,9 @@ export class CarrinhoComponent {
             type: data.status,
             message: data.msg
         }
-        console.log(data);
+        if(data.pedido.id_pedido){
+            this.http.post('Http://localhost:8000/pedido-produto/create',$param(psot),{headers:headers})
+        }
         this._toast.pop(msg)
         if(msg.type == 'success') {
             localStorage.removeItem('produto')

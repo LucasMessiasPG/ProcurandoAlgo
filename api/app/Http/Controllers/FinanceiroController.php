@@ -44,8 +44,13 @@ class FinanceiroController extends Controller
 	    $parser = json_decode($response);
 	    if(isset($parser->status) && isset($parser->cod)) {
 		    if($parser->cod == 0) {
-			    Pedido::create();
-			    return ['status' => 'success', 'msg' => 'Transação aprovada','json'=>$parser];
+			    $pedido = [
+				    'data_vencimento' => Carbon::now()->toDateTimeString(),
+				    'forma_pagamento' => 2,
+				    'id_usuario' => 1
+			    ];
+			    $newPedido =Pedido::create($pedido);
+			    return ['status' => 'success', 'msg' => 'Transação aprovada','json'=>$parser,'pedido'=>$newPedido];
 		    }else{
 			    return ['status' => 'warning', 'msg' => 'Não autorizado ou dados invalidos','json'=>$parser];
 		    }

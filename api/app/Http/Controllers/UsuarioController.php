@@ -39,8 +39,9 @@ class UsuarioController extends Controller
 			$user = $request->all();
 			$user['senha'] = \Hash::make($user['senha']);
 			$user['id_permissao'] = 1;
-			Usuario::create($user);
+			$user = Usuario::create($user);
 
+			return ['status'=>'success','msg'=>'Usuario registrado','user'=>$user];
 			return $this->_return('success','Usuario registrado');
 		}catch (\Exception $e){
 			$this->_logErro($e);
