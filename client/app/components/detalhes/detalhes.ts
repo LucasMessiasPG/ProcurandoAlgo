@@ -1,6 +1,6 @@
 import {Component} from "angular2/core";
 import {RouteParams} from "angular2/router";
-import {ProdutoService} from "../../services/Produto";
+import {ProdutoService} from "../../services/produto";
 import {Router} from "angular2/router";
 import {ComentarioService} from "../../services/comentario";
 import {ValorPipe} from "../../pipe/valor";
