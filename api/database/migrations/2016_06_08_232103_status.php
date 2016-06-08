@@ -14,8 +14,7 @@ class Status extends Migration
     {
         Schema::create('status', function (Blueprint $t) {
             $t->integer('id_status');
-            $t->integer('descricao');
-            $t->timestamps();
+            $t->string('descricao');
         });
     }
 
