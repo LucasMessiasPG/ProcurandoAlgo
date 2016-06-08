@@ -8,7 +8,7 @@ declare var $;
 @Injectable()
 export class UsuarioService{
     public usuarios = [];
-    private user = null;
+    private user = {};
     private urlBase = "http://localhost:8000/";
     private _filter = {};
     public user$
