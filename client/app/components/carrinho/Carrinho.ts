@@ -23,7 +23,7 @@ export class CarrinhoComponent {
 
     public http;
 
-    public parcelas = [2,3,4,5,6,7,8,9,10,11,12];
+    public parcelas = [1,2,3,4,5,6,7,8,9,10,11,12];
 
     public bandeiras = [
         {
@@ -97,11 +97,24 @@ export class CarrinhoComponent {
             type: data.status,
             message: data.msg
         }
-        if(data.pedido.id_pedido){
-            this.http.post('Http://localhost:8000/pedido-produto/create',$param(psot),{headers:headers})
-        }
         this._toast.pop(msg)
         if(msg.type == 'success') {
+            if(data.pedido.id_pedido){
+
+                var headers = new Headers();
+
+                headers.append('Content-Type', 'application/x-www-form-urlencoded');
+
+                for(var i in this.produtos) {
+                    var post = {
+                        id_produto:this.produtos[i].id_produto,
+                        id_pedido:data.pedido.id_pedido
+                    }
+                    this.http.post('Http://localhost:8000/pedido-produto/create', $.param(post), {headers: headers})
+                        .map(res => res.json())
+                        .subscribe(res => console.log(res))
+                }
+            }
             localStorage.removeItem('produto')
             localStorage.setItem('pedido',JSON.stringify(data.json))
             this.produtos = []
