@@ -23,6 +23,7 @@ class UsuarioController extends Controller
 	{
 		try{
 
+
 			$rules = [
 				'nome'=>'required|min:3|max:20',
 				'email'=>'required|email',
