@@ -12,6 +12,7 @@ import {UsuarioService} from "../../services/usuario";
 import {DepartamentoService} from "../../services/depatamento.service";
 import {ToastListComponent} from "../toast/toast-list.component";
 import {HistoricoComponent} from "../historico/historico";
+import {ListaClienteComponent} from "../lista_cliente/lista_cliente";
 
 //Aplicação em Produção
 enableProdMode();
@@ -34,6 +35,7 @@ enableProdMode();
     {path: "/detalhes/:id_produto", name:"Detalhes", component: DetalhesComponent},
     {path: "/compra-efetuada", name:"Finalizar", component: FinalizarComponent},
     {path: "/historico", name:"Historico", component: HistoricoComponent},
+    {path: "/clientes", name:"ListaCliente", component: ListaClienteComponent},
 ])
 
 export class MasterComponent {

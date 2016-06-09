@@ -18,9 +18,7 @@ export class ListaClienteComponent {
 
         let user = JSON.parse(localStorage.getItem('user'));
 
-        http.post("http://localhost:8000/cliente/filter", $.param({
-            id_usuario: user.id_usuario
-        }),{headers:headers})
+        http.post("http://localhost:8000/cliente/list", null,{headers:headers})
             .map(res => res.json())
             .subscribe(data => {
                 this.clientes = data.clientes;

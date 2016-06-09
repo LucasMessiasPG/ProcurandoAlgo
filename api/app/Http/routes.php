@@ -51,6 +51,10 @@ Route::group(['middleware' => ['ws']], function () {
     Route::post('email','EmailController@create');
 
     Route::post('transaction','FinanceiroController@transaction');
+    
+    Route::group(['prefix' => 'cliente'], function () {
+        Route::post('list', 'ClienteController@listar');
+    });
 });
 
 Route::group(['prefix'=>'asset'],function(){

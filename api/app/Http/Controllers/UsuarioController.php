@@ -2,6 +2,7 @@
 
 namespace App\Http\Controllers;
 
+use App\Models\Cliente;
 use App\Models\Usuario;
 use Illuminate\Http\Request;
 
@@ -106,7 +107,7 @@ class UsuarioController extends Controller
 			return $this->_return('success','Usuario filtrado',['filtro'=>$filtro]);
 		}catch (\Exception $e){
 			$this->_logErro($e);
-			return $this->_return('error','Erro ao filtrar usuario',['error'=>$e->getMessage()]);
+			return $this->_return('error','Erro ao filtrar usuario.',['error'=>$e->getMessage()]);
 		}
 	}
 }
