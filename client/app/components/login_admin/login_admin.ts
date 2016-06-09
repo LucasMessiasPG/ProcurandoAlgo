@@ -43,8 +43,8 @@ export class LoginAdminComponent{
         if(!user.nome){
             this.errors.push({error: 'Nome não foi preenchido'})
         }else{
-          if(user.nome.length <= 3 || user.nome.length >= 10){
-            this.errors.push({error: 'Nome deve conter entre 3 a 10 caracteres'})
+          if(user.nome.length <= 3 || user.nome.length >= 50){
+            this.errors.push({error: 'Nome deve conter entre 3 a 50 caracteres'})
           }
         }
 
