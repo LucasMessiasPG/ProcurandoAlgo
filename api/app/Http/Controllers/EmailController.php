@@ -2,29 +2,28 @@
 
 namespace App\Http\Controllers;
 
-use App\Models\Usuario;
+use App\Models\Cliente;
 use Illuminate\Http\Request;
 
 use App\Http\Requests;
-use App\Http\Controllers\Controller;
 
 class EmailController extends Controller
 {
     public function create(Request $request)
     {
-	    $this->_create($request->all());
+	    return $this->_create($request->all());
     }
 
 	public function _create($param){
 		$message = $param;
-//		$message = ['id_usuario'=>1,'msg'=>'teste'];
-		$message['pessoa'] = Usuario::find($message['id_usuario']);
+
+		$message['pessoa'] = Cliente::find($message['id_cliente']);
 
 		$ch = curl_init('http://erp.dfsystems.com.br/api/v1/email');
 		$post = [
 			'metodo' => 'sendEmail',
 			'parametros' => [
-				'to' => ['lucasmessias.pg@outlook.com'],
+				'to' => [$message['pessoa']->email],
 				'from' => 'desenvolvimento@dfsystems.com.br',
 				'body' => ['html'=>view('email', compact('message'))],
 				'titulo'=>'ProcurandoAlgo'
@@ -46,5 +45,7 @@ class EmailController extends Controller
 		$response = curl_exec($ch);
 		curl_close($ch);
 		$parser = json_decode($response);
+
+		return $response;
 	}
 }
