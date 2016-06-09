@@ -11,7 +11,7 @@ export class ListaClienteComponent {
 
     private clientes = [];
 
-    constructor(http: Http) {
+    constructor(private http: Http) {
         var headers = new Headers();
 
         headers.append('Content-Type', 'application/x-www-form-urlencoded');
@@ -23,6 +23,19 @@ export class ListaClienteComponent {
             .subscribe(data => {
                 this.clientes = data.clientes;
             });
+    }
+    
+    enviarEmail(cliente) {console.log(cliente);
+        var headers = new Headers();
+        
+        headers.append('Content-Type', 'application/x-www-form-urlencoded');
+        
+        this.http.post("http://localhost:8000/email", $.param({
+            id_cliente: cliente.id_cliente,
+            msg: 'text...'
+        }),{headers:headers})
+            .map(res => res.json())
+            .subscribe();
     }
 
 }

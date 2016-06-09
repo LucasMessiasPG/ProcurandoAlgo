@@ -6,12 +6,16 @@
         <th>Nome</th>
         <th>Email</th>
         <th>Qt. Pedidos</th>
+        <th>...</th>
         </thead>
         <tbody>
         <tr *ngFor="let cliente of clientes">
             <td>{{ cliente.nome }}</td>
             <td>{{ cliente.email }}</td>
             <td>{{ cliente.qt_pedidos }}</td>
+            <td>
+                <button class="btn btn-default" (click)="enviarEmail(cliente)">Enviar email</button>
+            </td>
         </tr>
         <tr *ngIf="clientes.length == 0">
             <td colspan="3">Nenhum cliente encontrado.</td>
