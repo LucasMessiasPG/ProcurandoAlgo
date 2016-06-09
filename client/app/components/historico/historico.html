@@ -4,15 +4,21 @@
     <table class="table">
         <thead>
         <th>Num. pedido</th>
+        <th>Cliente</th>
         <th>Data</th>
         <th>Status</th>
+        <th>Produtos</th>
         </thead>
         <tbody>
-        <tr *ngFor="let pedido of pedidos">
-            <td>{{ pedido.id_pedido }}</td>
-            <td>{{ pedido.created_at }}</td>
-            <td>{{ pedido.status_pagamento }}</td>
-        </tr>
+            <tr *ngFor="let pedido of pedidos">
+                <td>{{ pedido.id_pedido }}</td>
+                <td>{{ pedido.cliente }}</td>
+                <td>{{ pedido.created_at }}</td>
+                <td>{{ pedido.status_pagamento }}</td>
+                <td>
+                    <div *ngFor="let produto of pedido.produtos">{{ produto.nome }}</div>
+                </td>
+            </tr>
         <tr *ngIf="pedidos.length == 0">
             <td colspan="3">Nenhum pedido encontrado.</td>
         </tr>

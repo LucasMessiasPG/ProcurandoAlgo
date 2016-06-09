@@ -74,7 +74,7 @@ export class CarrinhoComponent {
         let user = JSON.parse(localStorage.getItem('user'));
 
         var post = {
-            'id_usuario': user.id_usuario,
+            'id_cliente': user.id_cliente,
             'valor':this.total(true).toFixed(2),
             'parcelas':pagamento.parcelas,
             'nome_cartao':pagamento.nome_cartao,

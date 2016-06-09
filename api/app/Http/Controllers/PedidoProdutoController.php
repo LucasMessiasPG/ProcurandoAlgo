@@ -2,6 +2,7 @@
 
 namespace App\Http\Controllers;
 
+use App\Models\Pedido;
 use App\Models\PedidoProduto;
 use Illuminate\Http\Request;
 
@@ -58,8 +59,13 @@ class PedidoProdutoController extends Controller
 	public function filter(Request $request)
 	{
 		try{
-			$model = new PedidoProduto();
-			$filtro = $model
+			$model = new Pedido();
+			$pedidos = $model
+				->select([
+					'pedidos.*',
+					'status.descricao as status_pagamento',
+					'clientes.nome as cliente'
+				])
 				->where(function($q)use($request){
 					foreach ($request->all() as $key=>$filter) {
 						if($filter == '')
@@ -78,9 +84,22 @@ class PedidoProdutoController extends Controller
 						}
 					}
 				})
-				->join('pedidos','pedidos.id_pedido','=','pedido_produto.id_pedido')
-				->get()
-				->toArray();
+				->join('status', 'status.id_status', '=', 'pedidos.id_status')
+				->join('clientes', 'clientes.id_cliente', '=', 'pedidos.id_cliente')
+				->orderBy('created_at', 'desc')
+				->get();
+
+			$filtro = [];
+
+			/**
+			 * @var Pedido $pedido
+			 */
+			foreach ($pedidos as $pedido) {
+				$pedidoArr = $pedido->toArray();
+				$pedidoArr['produtos'] = $pedido->produtos;
+
+				$filtro[] = $pedidoArr;
+			}
 
 			return $this->_return('success',ucfirst($this->model).' filtrado',['filtro'=>$filtro]);
 		}catch (\Exception $e){
