@@ -45,6 +45,10 @@ return [
             'driver' => 'session',
             'provider' => 'cliente',
         ],
+        'ws_user' => [
+            'driver' => 'session',
+            'provider' => 'usuario'
+        ]
     ],
 
     /*

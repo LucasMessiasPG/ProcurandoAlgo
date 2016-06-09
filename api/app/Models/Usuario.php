@@ -10,6 +10,7 @@ class Usuario extends Authenticatable
 
 	public $primaryKey = 'id_usuario';
 	protected $hidden = ['senha','remember_token'];
+	protected $guard = 'ws_user';
 	public $fillable = ['id_usuario', 'nome','email','senha','id_permissao'];
 
 	public function _login($usuario)
