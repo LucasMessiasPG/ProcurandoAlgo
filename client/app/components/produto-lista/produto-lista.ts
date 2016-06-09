@@ -5,6 +5,7 @@ import {ROUTER_DIRECTIVES} from "angular2/router";
 import {Router} from "angular2/router";
 import {TruncatePipe} from "../../pipe/truncate";
 import {ValorPipe} from "../../pipe/valor";
+import {UsuarioService} from "../../services/usuario";
 
 @Component({
     selector: "produto-lista",
@@ -17,6 +18,7 @@ import {ValorPipe} from "../../pipe/valor";
 export class ProdutoListaComponent {
 
     public produtos;
+    private user;
 
     @Input() set filtro(filter) {
         this.produtoService.filter(filter);
@@ -60,7 +62,8 @@ export class ProdutoListaComponent {
         this.router.navigateByUrl('carrinho')
     }
 
-    constructor(private produtoService: ProdutoService, private router: Router) {
+    constructor(private produtoService: ProdutoService, private router: Router, private usuarioService:UsuarioService) {
+        this.user = usuarioService.getUser();
     }
 
 

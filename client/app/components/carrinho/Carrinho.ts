@@ -7,6 +7,7 @@ import {ValorPipe} from "../../pipe/valor";
 import {Http} from "angular2/http";
 import {Headers} from "angular2/http";
 import {ToastService} from "../toast/toast-list.service";
+import {UsuarioService} from "../../services/usuario";
 declare var $:any;
 
 @Component({
@@ -34,7 +35,11 @@ export class CarrinhoComponent {
         }
     ];
 
-    constructor(private routeParams: RouteParams, private produtoService: ProdutoService,private router: Router,_http:Http,private _toast: ToastService){
+    constructor(private _usuarioService:UsuarioService,private routeParams: RouteParams, private produtoService: ProdutoService,private router: Router,_http:Http,private _toast: ToastService){
+        var user:any = _usuarioService.getUser();
+        if(user.id_usuario){
+            router.navigateByUrl('/')
+        }
         if(localStorage.getItem('produto') == null){
             localStorage.setItem('produto',JSON.stringify([]))
         }
