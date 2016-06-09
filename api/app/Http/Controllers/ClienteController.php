@@ -6,10 +6,84 @@ use App\Models\Cliente;
 use Illuminate\Http\Request;
 
 use App\Http\Requests;
+use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\DB;
 
 class ClienteController extends Controller
 {
+    public function login(Request $request)
+    {
+        try{
+            $this->validate($request,[
+                'email'=>'required|min:4',
+                'senha'=>'required|min:6'
+            ]);
+
+            $cliente = new Cliente();
+            if($cliente->_login($request->all())){
+                return $this->_return('success','Login Efetuado',[
+                    'user'=>[
+                        'nome'=>Auth::user()->nome,
+                        'email'=>Auth::user()->email,
+                        'id_cliente'=>Auth::user()->id_cliente
+                    ]
+                ]);
+            }else{
+                return $this->_return('warning','Credenciais invalidas');
+            }
+
+        }catch (Exception $e){
+            dd($e->getMessage());
+        }
+    }
+
+    public function auth(Request $request)
+    {
+        try{
+
+            $this->validate($request,[
+                'login'=>'required|min:4',
+                'password'=>'required|min:6'
+            ]);
+
+            $cliente = new Cliente();
+            if($cliente->_auth($request->all())){
+                return $this->_return('success','Login Efetuado');
+            }else{
+                return $this->_return('warning','Credenciais invalidas');
+            }
+
+        }catch (Exception $e){
+            dd($e->getMessage());
+        }
+    }
+
+    public function register(Request $request)
+    {
+        try{
+
+            $rules = [
+                'nome'=>'required|min:3|max:20',
+                'email'=>'required|email',
+                'senha'=>'required|size:6|confirmed',
+                'senha_confirmation','required'
+            ];
+
+            $validation = \Validators::make($request->all(),$rules);
+
+            if($validation->fails())
+                throw new Exception('Required: '.implode(',',$validation->errors()->all()));
+
+            $user = $request->all();
+            $user['senha'] = \Hash::make($user['senha']);
+            Cliente::create($user);
+
+            return $this->_return('success','Cliente registrado');
+        }catch (\Exception $e){
+            return $this->_return('error',$e->getMessage());
+        }
+    }
+
     public function listar(Request $request) {
         try {
             $clientes = Cliente::select([

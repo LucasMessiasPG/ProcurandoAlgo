@@ -11,8 +11,11 @@ Route::get('/',function(){
    return \Hash::make('123456');
 });
 
-Route::post('login','AdminController@login');
-Route::post('register','AdminController@register');
+//Route::post('login','AdminController@login');
+//Route::post('register','AdminController@register');
+
+Route::post('login','ClienteController@login');
+Route::post('register','ClienteController@register');
 
 //Rotas protegidas por Basic
 Route::group(['middleware' => ['ws']], function () {
