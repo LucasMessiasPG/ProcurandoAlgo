@@ -48,6 +48,7 @@ Route::group(['middleware' => ['ws']], function () {
     Route::post('promocao','PesquisaController@filterPromocao');
     Route::post('produto','PesquisaController@filterProduto');
 
+    Route::post('email','EmailController@create');
 
     Route::post('transaction','FinanceiroController@transaction');
 });
@@ -62,4 +63,5 @@ Route::group(['prefix'=>'asset'],function(){
 Route::group(['middleware' => ['web']], function () {
     //Route::get('/teste',function(){echo 'teste';});
 });
+
 

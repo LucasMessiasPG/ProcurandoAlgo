@@ -50,9 +50,12 @@ class FinanceiroController extends Controller
 		    ];
 
 		    $newPedido = Pedido::create($pedido);
+		    $email = new EmailController();
 		    if($parser->cod == 0) {
+			    $email->_create(['id_usuario'=>$pedido['id_usuario'],'msg'=>'Obrigado por fazer sua compra conosco. Seu pedido foi autorizado']);
 			    return ['status' => 'success', 'msg' => 'Transação aprovada','json'=>$parser,'pedido'=>$newPedido];
 		    }else{
+			    $email->_create(['id_usuario'=>$pedido['id_usuario'],'msg'=>'Obrigado por fazer sua compra conosco. Porem seu pedido não foi autorizado']);
 			    return ['status' => 'warning', 'msg' => 'Não autorizado ou dados invalidos','json'=>$parser];
 		    }
 	    }else{
