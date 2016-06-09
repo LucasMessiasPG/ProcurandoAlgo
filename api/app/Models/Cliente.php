@@ -2,17 +2,24 @@
 
 namespace App\Models;
 
-use Illuminate\Foundation\Auth\User;
+use Illuminate\Foundation\Auth\User as Authenticatable;
 use Illuminate\Support\Facades\Auth;
 
-class Cliente extends User
+class Cliente extends Authenticatable
 {
     public $primaryKey = 'id_cliente';
     
     protected $fillable = [
         'nome',
         'email',
-        'login'
+        'login',
+        'senha',
+        'remember_token'
+    ];
+
+    protected $hidden = [
+        'senha',
+        'remember_token'
     ];
 
     public function _login($cliente)

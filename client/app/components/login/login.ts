@@ -66,7 +66,7 @@ export class LoginComponent{
         if(this.errors.length == 0){
             this._clienteService.create(user).subscribe((response) => {
                 if(response.status == 'success') {
-                    let toast = {message:'Registro Efeuado',type:'success'}
+                    let toast = {message:'Registro Efetuado',type:'success'}
                     this._toast.pop(toast);
 
                     this._clienteService.setUser(response.user);

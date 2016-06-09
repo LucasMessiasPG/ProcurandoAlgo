@@ -58,7 +58,7 @@ class ClienteController extends Controller
         }
     }
 
-    public function register(Request $request)
+    public function create(Request $request)
     {
         try{
 
@@ -66,19 +66,20 @@ class ClienteController extends Controller
                 'nome'=>'required|min:3|max:20',
                 'email'=>'required|email',
                 'senha'=>'required|size:6|confirmed',
-                'senha_confirmation','required'
+                'senha_confirmation'=>'required'
             ];
 
-            $validation = \Validators::make($request->all(),$rules);
+            $validation = \Validator::make($request->all(),$rules);
 
             if($validation->fails())
-                throw new Exception('Required: '.implode(',',$validation->errors()->all()));
-
+                throw new \Exception('Required: '.implode(',',$validation->errors()->all()));
             $user = $request->all();
+
             $user['senha'] = \Hash::make($user['senha']);
+            
             Cliente::create($user);
 
-            return $this->_return('success','Cliente registrado');
+            return ['status'=>'success','msg'=>'Cliente registrado','user'=>$user];
         }catch (\Exception $e){
             return $this->_return('error',$e->getMessage());
         }

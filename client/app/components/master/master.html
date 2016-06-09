@@ -33,17 +33,17 @@
                     {{ user.nome }}
                 </a>
                 <div class="dropdown-menu dropdown-menu-right" aria-labelledby="usuario_menu">
-                    <div *ngIf="user.id_cliente">
+                    <div *ngIf="user && user.id_cliente">
                         <a class="dropdown-item" [routerLink]="['Historico']">Histórico de compras</a>
                     </div>
-                    <div *ngIf="user.id_usuario">
+                    <div *ngIf="user && user.id_usuario">
                         <a class="dropdown-item" [routerLink]="['Historico']">Histórico de compras</a>
                         <a class="dropdown-item" [routerLink]="['ListaCliente']">Lista de Cliente</a>
                     </div>
                     <a class="dropdown-item" (click)="logout()">Sair</a>
                 </div>
             </li>
-            <li class="nav-item pull-xs-right" *ngIf="user.id_cliente">
+            <li class="nav-item pull-xs-right" *ngIf="user && user.id_cliente">
                 <a class="nav-link" [routerLink]="['Carrinho']">
                     <i class="fa fa-shopping-cart"></i> Carrinho
                 </a>

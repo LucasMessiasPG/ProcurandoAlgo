@@ -57,6 +57,7 @@ Route::group(['middleware' => ['ws']], function () {
     
     Route::group(['prefix' => 'cliente'], function () {
         Route::post('list', 'ClienteController@listar');
+        Route::post('create', 'ClienteController@create');
     });
 });
 
