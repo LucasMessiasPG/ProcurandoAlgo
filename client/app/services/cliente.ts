@@ -5,10 +5,10 @@ import {EventEmitter} from "angular2/core";
 declare var $;
 
 @Injectable()
-export class UsuarioService{
+export class ClienteService{
     private user = {};
     private urlBase = "http://localhost:8000/";
-    public user$
+    public user$;
 
     constructor(private http: Http){
         let user = localStorage.getItem('user')
@@ -23,13 +23,13 @@ export class UsuarioService{
     public create(user){
         var header = new Headers();
         header.append('Content-type','application/x-www-form-urlencoded')
-        return this.http.post(this.urlBase+'usuario/create', this.serialize(user),{headers:header}).map(res=>res.json());
+        return this.http.post(this.urlBase+'cliente/create', this.serialize(user),{headers:header}).map(res=>res.json());
     }
 
     login(user){
         var header = new Headers();
         header.append('Content-type','application/x-www-form-urlencoded')
-        return this.http.post(this.urlBase+'login_admin', this.serialize(user),{headers:header}).map(res=>res.json());
+        return this.http.post(this.urlBase+'login', this.serialize(user),{headers:header}).map(res=>res.json());
     }
 
     logout(){

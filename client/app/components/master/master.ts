@@ -13,6 +13,8 @@ import {DepartamentoService} from "../../services/depatamento.service";
 import {ToastListComponent} from "../toast/toast-list.component";
 import {HistoricoComponent} from "../historico/historico";
 import {ListaClienteComponent} from "../lista_cliente/lista_cliente";
+import {LoginAdminComponent} from "../login_admin/login_admin";
+import {ClienteService} from "../../services/cliente";
 
 //Aplicação em Produção
 enableProdMode();
@@ -29,6 +31,7 @@ enableProdMode();
 @RouteConfig([
     {path: "/", name: "Home", component: HomeComponent},
     {path: "/login", name: "Login", component: LoginComponent},
+    {path: "/login_admin", name: "LoginAdmin", component: LoginAdminComponent},
     {path: "/departamento/:id_departamento", name: "Departamento", component: DepartamentoComponent},
     {path: "/busca/:texto", name: "Busca", component: BuscaComponent},
     {path: "/carrinho", name:"Carrinho", component: CarrinhoComponent},
@@ -44,16 +47,22 @@ export class MasterComponent {
 
     public departamentos = [];
 
-    constructor(private router: Router,private _usuarioService: UsuarioService, private departamentoService: DepartamentoService) {
+    constructor(private router: Router,private _clienteService: ClienteService,private _usuarioService: UsuarioService, private departamentoService: DepartamentoService) {
         this.router = router;
         if(this._usuarioService.getUser() != null) {
             this.user = this._usuarioService.getUser();
         }
+
+        if(this._clienteService.getUser() != null) {
+            this.user = this._clienteService.getUser();
+        }
+
         this.departamentoService.all().subscribe(res => this.departamentos = res.filtro);
     }
 
     ngOnInit(){
         this._usuarioService.user$.subscribe(user => this.user = user)
+        this._clienteService.user$.subscribe(user => this.user = user)
     }
 
     public buscar(event, texto) {
@@ -63,6 +72,7 @@ export class MasterComponent {
 
     logout(){
         this._usuarioService.logout()
+        this._clienteService.logout()
         this.user = null
         this.router.navigateByUrl('/')
     }

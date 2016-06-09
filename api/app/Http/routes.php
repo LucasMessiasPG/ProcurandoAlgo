@@ -11,8 +11,8 @@ Route::get('/',function(){
    return \Hash::make('123456');
 });
 
-//Route::post('login','AdminController@login');
-//Route::post('register','AdminController@register');
+Route::post('login_admin','AdminController@login');
+//Route::post('register_admin','AdminController@register');
 
 Route::post('login','ClienteController@login');
 Route::post('register','ClienteController@register');

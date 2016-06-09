@@ -1,0 +1,45 @@
+<div class="col-md-offset-1 col-md-5">
+	<form #l="ngForm" (submit)="login(l.value)" class="form-control">
+		<h4>Login</h4>
+		<div>
+			<label class="col-md-12">Email
+				<input type="text" class="form-control" ngControl="email" name="email">
+			</label>
+		</div>
+		<div>
+		<label class="col-md-12">Senha
+			<input type="password" class="form-control" ngControl="senha" name="senha">
+		</label>
+		</div>
+		<button type="submit" class="btn btn-info">Entrar</button>
+	</form>
+</div>
+<div class="col-md-offset-1 col-md-5" *ngIf="1==2">
+	<form #f="ngForm" (submit)="register(f.value)" class="form-control">
+		<h4>Registrar</h4>
+		<div>
+			<label class="col-md-12">Nome
+				<input type="text" class="form-control" ngControl="nome" name="nome">
+			</label>
+		</div>
+		<div>
+			<label class="col-md-12">Email
+				<input type="text" class="form-control" ngControl="email" name="email">
+			</label>
+		</div>
+		<div>
+			<label class="col-md-12">Senha
+				<input type="password" class="form-control" ngControl="senha" name="senha">
+			</label>
+		</div>
+		<div>
+			<label class="col-md-12">Confirme a Senha
+				<input type="password" class="form-control" ngControl="senha_confirmation" name="senha_confirmation">
+			</label>
+		</div>
+		<ul *ngIf="errors.length > 0">
+			<li *ngFor="let e of errors">{{ e.error }}</li>
+		</ul>
+		<button type="submit" class="btn btn-info">Registrar</button>
+	</form>
+</div>

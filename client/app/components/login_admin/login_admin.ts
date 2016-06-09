@@ -1,16 +1,16 @@
 import {Component} from "angular2/core";
-import {ClienteService} from "../../services/cliente";
+import {UsuarioService} from "../../services/usuario";
 import {Router} from "angular2/router";
 import {ToastService} from "../toast/toast-list.service";
 @Component({
-    templateUrl:'../app/components/login/login.html'
+    templateUrl:'../app/components/login_admin/login_admin.html'
 })
-export class LoginComponent{
+export class LoginAdminComponent{
 
     private errors = [];
 
-    constructor(private _clienteService: ClienteService,private _toast: ToastService,private _router: Router){
-        if(this._clienteService.getUser() != null) {
+    constructor(private _usuarioService: UsuarioService,private _toast: ToastService,private _router: Router){
+        if(this._usuarioService.getUser() != null) {
             this._router.navigateByUrl('/');
         }
     }
@@ -23,14 +23,14 @@ export class LoginComponent{
             this.errors.push({error: 'Senha não foi preenchido'})
         }
         if(this.errors.length == 0) {
-            this._clienteService.login(user).subscribe(res => this.setUser(res))
+            this._usuarioService.login(user).subscribe(res => this.setUser(res))
         }
     }
     setUser(response){
         let user = response.user
         if(user && user.nome && user.email) {
             this._toast.pop({message: 'Bem vindo ' + user.nome.toUpperCase(), type: 'success'})
-            this._clienteService.setUser(user)
+            this._usuarioService.setUser(user)
             this._router.navigateByUrl('/');
         }else{
             this._toast.pop({message:response.msg,type:response.status})
@@ -64,12 +64,12 @@ export class LoginComponent{
         }
 
         if(this.errors.length == 0){
-            this._clienteService.create(user).subscribe((response) => {
+            this._usuarioService.create(user).subscribe((response) => {
                 if(response.status == 'success') {
                     let toast = {message:'Registro Efeuado',type:'success'}
                     this._toast.pop(toast);
 
-                    this._clienteService.setUser(response.user);
+                    this._usuarioService.setUser(response.user);
 
                     user = {};
 

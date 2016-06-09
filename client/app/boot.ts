@@ -7,6 +7,7 @@ import {provide} from "angular2/core";
 import 'rxjs/add/operator/map';
 import {ComentarioService} from "./services/comentario";
 import {UsuarioService} from "./services/usuario";
+import {ClienteService} from "./services/cliente";
 //import {ToastService} from "./components/toast/toast-list/toast-list.service";
 import {DepartamentoService} from "./services/depatamento.service";
 import {ToastService} from "./components/toast/toast-list.service";
@@ -17,6 +18,7 @@ bootstrap(MasterComponent, [
     ProdutoService,
     ComentarioService,
     UsuarioService,
+    ClienteService,
     DepartamentoService,
     ToastService
 ]);
