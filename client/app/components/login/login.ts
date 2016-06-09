@@ -1,9 +1,10 @@
 import {Component} from "angular2/core";
 import {ClienteService} from "../../services/cliente";
-import {Router} from "angular2/router";
+import {Router, ROUTER_DIRECTIVES} from "angular2/router";
 import {ToastService} from "../toast/toast-list.service";
 @Component({
-    templateUrl:'../app/components/login/login.html'
+    templateUrl:'../app/components/login/login.html',
+    directives:[ROUTER_DIRECTIVES],
 })
 export class LoginComponent{
 
