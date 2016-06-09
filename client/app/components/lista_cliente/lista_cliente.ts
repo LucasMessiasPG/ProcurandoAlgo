@@ -33,6 +33,24 @@ export class ListaClienteComponent {
 
         var mensagem: string = prompt('Digite a mensagem de e-mail que irá enviar');
 
+        if(mensagem == undefined) {
+            return;
+        }
+
+        if(mensagem == '') {
+            let toast = {message:'Deve informar uma mensagem',type:'warning'}
+            this._toast.pop(toast);
+
+            return;
+        }
+
+        if(mensagem.length < 5) {
+            let toast = {message:'A mensagem de conter pelo menos 5 caracteres',type:'warning'}
+            this._toast.pop(toast);
+
+            return;
+        }
+
         this.http.post("http://localhost:8000/email", $.param({
             id_cliente: cliente.id_cliente,
             msg: mensagem
