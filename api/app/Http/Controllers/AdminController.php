@@ -23,7 +23,14 @@ class AdminController extends Controller
 
 				$usuario = new Usuario();
 		    if($usuario->_login($request->all())){
-			    return $this->_return('success','Login Efetuado',['user'=>['nome'=>Auth::user()->nome,'email'=>Auth::user()->email]]);
+			    return $this->_return('success','Login Efetuado',[
+				    'user'=>[
+					    'nome'=>Auth::user()->nome,
+					    'email'=>Auth::user()->email,
+					    'id_usuario'=>Auth::user()->id_usuario,
+					    'id_permissao'=>Auth::user()->id_permissao
+				    ]
+			    ]);
 		    }else{
 			    return $this->_return('warning','Credenciais invalidas');
 		    }
