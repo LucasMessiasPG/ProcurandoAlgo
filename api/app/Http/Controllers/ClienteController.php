@@ -77,7 +77,7 @@ class ClienteController extends Controller
 
             $user['senha'] = \Hash::make($user['senha']);
             
-            Cliente::create($user);
+            $user = Cliente::create($user);
 
             return ['status'=>'success','msg'=>'Cliente registrado','user'=>$user];
         }catch (\Exception $e){
