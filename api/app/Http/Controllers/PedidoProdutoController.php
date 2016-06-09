@@ -62,11 +62,14 @@ class PedidoProdutoController extends Controller
 			$filtro = $model
 				->where(function($q)use($request){
 					foreach ($request->all() as $key=>$filter) {
+						if($filter == '')
+							continue;
+
 						switch ($key) {
 							case 'nome':
 								$q->where($key, 'ilike', "%".$filter."%");
 								break;
-							case 'id_usuario':
+							case 'id_cliente':
 								$q->where('pedidos.'.$key, '=', $filter);
 								break;
 							default:

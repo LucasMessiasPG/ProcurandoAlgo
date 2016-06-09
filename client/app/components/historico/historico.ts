@@ -19,7 +19,7 @@ export class HistoricoComponent {
         let user = JSON.parse(localStorage.getItem('user'));
 
         http.post("http://localhost:8000/pedido-produto/filter", $.param({
-            id_usuario: user.id_usuario
+            id_cliente: user.id_cliente
         }),{headers:headers})
             .map(res => res.json())
             .subscribe(data => {
