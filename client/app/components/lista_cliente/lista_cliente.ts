@@ -57,6 +57,13 @@ export class ListaClienteComponent {
         }),{headers:headers})
             .map(res => res.json())
             .subscribe(data => {
+                if(data.status == 'error') {
+                    let toast = {message:'Falha no envio de email',type:'error'}
+                    this._toast.pop(toast);
+
+                    return;
+                }
+
                 let toast = {message:'E-mail enviado com sucesso',type:'success'}
                 this._toast.pop(toast);
             });
