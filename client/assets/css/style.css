@@ -43,3 +43,7 @@ a{
     height: 300px;
     overflow-y: auto;
 }
+
+form {
+    margin: 0;
+}

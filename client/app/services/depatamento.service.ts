@@ -13,6 +13,6 @@ export class DepartamentoService{
     all(){
         var header = new Headers    ();
         header.append('Content-type','application/x-www-form-urlencoded')
-        return this._http.post(this._url).map(res => res.json())
-}
+        return this._http.post(this._url, null).map(res => res.json())
+    }
 }

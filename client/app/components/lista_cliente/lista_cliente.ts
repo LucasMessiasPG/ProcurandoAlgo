@@ -1,5 +1,6 @@
 import {Component} from "angular2/core";
 import {Headers, Http} from "angular2/http";
+import {ToastService} from "../toast/toast-list.service";
 
 declare var $:any;
 
@@ -11,7 +12,7 @@ export class ListaClienteComponent {
 
     private clientes = [];
 
-    constructor(private http: Http) {
+    constructor(private http: Http, private _toast: ToastService) {
         var headers = new Headers();
 
         headers.append('Content-Type', 'application/x-www-form-urlencoded');
@@ -29,13 +30,18 @@ export class ListaClienteComponent {
         var headers = new Headers();
         
         headers.append('Content-Type', 'application/x-www-form-urlencoded');
-        
+
+        var mensagem: string = prompt('Digite a mensagem de e-mail que irá enviar');
+
         this.http.post("http://localhost:8000/email", $.param({
             id_cliente: cliente.id_cliente,
-            msg: 'text...'
+            msg: mensagem
         }),{headers:headers})
             .map(res => res.json())
-            .subscribe();
+            .subscribe(data => {
+                let toast = {message:'E-mail enviado com sucesso',type:'success'}
+                this._toast.pop(toast);
+            });
     }
 
 }
