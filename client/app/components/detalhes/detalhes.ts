@@ -4,6 +4,7 @@ import {ProdutoService} from "../../services/produto";
 import {Router} from "angular2/router";
 import {ComentarioService} from "../../services/comentario";
 import {ValorPipe} from "../../pipe/valor";
+import {UsuarioService} from "../../services/usuario";
 
 @Component({
     templateUrl:'../app/components/detalhes/detalhes.html',
@@ -15,15 +16,18 @@ export class DetalhesComponent{
     public produto;
     public comentarios;
     public filtro;
+    public user;
     public tab;
 
     constructor(
         private routeParams: RouteParams,
         private produtoService: ProdutoService,
         private router: Router,
-        private comentarioService: ComentarioService
+        private comentarioService: ComentarioService,
+        private usuarioService:UsuarioService
     ){
-        this.tab = 'descricao'
+        this.tab = 'descricao';
+        this.user = usuarioService.getUser();
         this.filtro = {
             id_produto: routeParams.get('id_produto')
         };

@@ -12,7 +12,7 @@
 		</div>
 	</div>
 	<div class="col-sm-6 border-left heigth100">
-		<button (click)="addCarrinho(produto)" class="btn btn-success btn-custom center-block vertical">Comprar</button>
+		<button [disabled]="user && user.id_usuario" (click)="addCarrinho(produto)" class="btn btn-success btn-custom center-block vertical">Comprar</button>
 	</div>
 </div>
 <div class="row">

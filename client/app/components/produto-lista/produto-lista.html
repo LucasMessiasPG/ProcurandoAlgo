@@ -8,7 +8,7 @@
         <p>R$ {{ produto.valor_unitario | valor:'R$' }}</p>
         <p>
             <a class="btn btn-info" [routerLink]="['Detalhes', {id_produto: produto.id_produto}]"><i class="fa fa-search-plus"></i> Datalhes</a>
-            <a class="btn btn-success" (click)="addCarrinho(produto)"><i class="fa fa-dollar"></i> Comprar</a>
+            <button [disabled]="user && user.id_usuario" class="btn btn-success" (click)="addCarrinho(produto)"><i class="fa fa-dollar"></i> Comprar</button>
         </p>
     </div>
 </div>
