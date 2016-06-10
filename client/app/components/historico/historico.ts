@@ -2,11 +2,13 @@ import {Component} from "angular2/core";
 import {Headers, Http} from "angular2/http";
 import {UsuarioService} from "../../services/usuario";
 import {Router} from "angular2/router";
+import {ValorPipe} from "../../pipe/valor";
 
 declare var $:any;
 
 @Component({
-    templateUrl: '../app/components/historico/historico.html'
+    templateUrl: '../app/components/historico/historico.html',
+    pipes:[ValorPipe]
 })
 
 export class HistoricoComponent {
@@ -15,8 +17,7 @@ export class HistoricoComponent {
     
     constructor(http: Http, private _user:UsuarioService,private router: Router) {
         var user:any = _user.getUser();
-        console.log(user);
-        if((user && !user.id_usuario) || user == null){
+        if(user == null){
             router.navigateByUrl('/')
             return ;
         }

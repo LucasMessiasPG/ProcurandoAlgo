@@ -19,7 +19,7 @@
                 <td>
                     <div *ngFor="let produto of pedido.produtos">{{ produto.nome }}</div>
                 </td>
-                <td>{{ pedido.valor }}</td>
+                <td>R$ {{ pedido.valor | valor }}</td>
             </tr>
         <tr *ngIf="pedidos && pedidos.length == 0">
             <td colspan="3">Nenhum pedido encontrado.</td>

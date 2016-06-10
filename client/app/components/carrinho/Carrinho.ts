@@ -77,14 +77,14 @@ export class CarrinhoComponent {
     enviar(pagamento){
 
         let user = JSON.parse(localStorage.getItem('user'));
-
+        let valor:number = parseFloat(this.total(true).toFixed(2));
         var post = {
             'id_cliente': user.id_cliente,
-            'valor':this.total(true).toFixed(2),
+            'valor':(pagamento.parcelas == 1)?(valor*0.95).toFixed(2):(pagamento.parcelas > 9)?(valor*1.04).toFixed(2):valor.toFixed(2) ,
+            'cvc':pagamento.cvc,
             'parcelas':pagamento.parcelas,
             'nome_cartao':pagamento.nome_cartao,
             'num_cartao':pagamento.num_cartao,
-            'cvc':pagamento.cvc,
             'mes_cartao':pagamento.mes_cartao,
             'ano_cartao':pagamento.ano_cartao
         };

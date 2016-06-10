@@ -46,7 +46,8 @@ class FinanceiroController extends Controller
 			    'id_cliente'=>$request->id_cliente,
 			    'data_vencimento' => Carbon::now()->toDateTimeString(),
 			    'forma_pagamento' => 2,
-			    'id_status' => $parser->cod
+			    'id_status' => $parser->cod,
+			    'valor'=>$request->valor
 		    ];
 
 		    $newPedido = Pedido::create($pedido);
