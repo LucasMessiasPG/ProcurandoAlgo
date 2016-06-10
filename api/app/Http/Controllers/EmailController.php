@@ -25,7 +25,7 @@ class EmailController extends Controller
 			'parametros' => [
 				'to' => [$message['pessoa']->email],
 				'from' => 'desenvolvimento@dfsystems.com.br',
-				'body' => ['html'=>view('email', compact('message'))],
+				'body' => ['html'=>(String)view('email', compact('message'))],
 				'titulo'=>'ProcurandoAlgo'
 			]
 		];
