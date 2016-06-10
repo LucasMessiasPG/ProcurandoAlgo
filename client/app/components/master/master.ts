@@ -15,6 +15,7 @@ import {HistoricoComponent} from "../historico/historico";
 import {ListaClienteComponent} from "../lista_cliente/lista_cliente";
 import {LoginAdminComponent} from "../login_admin/login_admin";
 import {ClienteService} from "../../services/cliente";
+import {ToastService} from "../toast/toast-list.service";
 
 //Aplicação em Produção
 enableProdMode();
@@ -25,7 +26,8 @@ enableProdMode();
     directives: [
         ROUTER_DIRECTIVES,
         ToastListComponent
-    ]
+    ],
+    providers:[ToastService]
 })
 
 @RouteConfig([
@@ -47,7 +49,7 @@ export class MasterComponent {
 
     public departamentos = [];
 
-    constructor(private router: Router,private _clienteService: ClienteService,private _usuarioService: UsuarioService, private departamentoService: DepartamentoService) {
+    constructor(private toast: ToastService,private router: Router,private _clienteService: ClienteService,private _usuarioService: UsuarioService, private departamentoService: DepartamentoService) {
         this.router = router;
         if(this._usuarioService.getUser() != null) {
             this.user = this._usuarioService.getUser();
@@ -71,6 +73,9 @@ export class MasterComponent {
     }
 
     logout(){
+        console.log()
+        this.toast.pop({message:'Ate logo',type:'info'})
+        localStorage.clear()
         this._usuarioService.logout()
         this._clienteService.logout()
         this.user = null

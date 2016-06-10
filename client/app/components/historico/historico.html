@@ -21,7 +21,7 @@
                 </td>
                 <td>{{ pedido.valor }}</td>
             </tr>
-        <tr *ngIf="pedidos.length == 0">
+        <tr *ngIf="pedidos && pedidos.length == 0">
             <td colspan="3">Nenhum pedido encontrado.</td>
         </tr>
         </tbody>

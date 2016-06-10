@@ -68,7 +68,7 @@ class PedidoProdutoController extends Controller
 				])
 				->where(function($q)use($request){
 					foreach ($request->all() as $key=>$filter) {
-						if($filter == '')
+						if(!empty($filter) || $filter == '')
 							continue;
 
 						switch ($key) {

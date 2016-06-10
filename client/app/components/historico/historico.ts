@@ -1,5 +1,7 @@
 import {Component} from "angular2/core";
 import {Headers, Http} from "angular2/http";
+import {UsuarioService} from "../../services/usuario";
+import {Router} from "angular2/router";
 
 declare var $:any;
 
@@ -11,12 +13,17 @@ export class HistoricoComponent {
     
     private pedidos = [];
     
-    constructor(http: Http) {
+    constructor(http: Http, private _user:UsuarioService,private router: Router) {
+        var user:any = _user.getUser();
+        console.log(user);
+        if((user && !user.id_usuario) || user == null){
+            router.navigateByUrl('/')
+            return ;
+        }
         var headers = new Headers();
 
         headers.append('Content-Type', 'application/x-www-form-urlencoded');
 
-        let user = JSON.parse(localStorage.getItem('user'));
 
         http.post("http://localhost:8000/pedido-produto/filter", $.param({
             id_cliente: user.id_cliente

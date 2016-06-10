@@ -37,7 +37,7 @@ export class CarrinhoComponent {
 
     constructor(private _usuarioService:UsuarioService,private routeParams: RouteParams, private produtoService: ProdutoService,private router: Router,_http:Http,private _toast: ToastService){
         var user:any = _usuarioService.getUser();
-        if(user.id_usuario){
+        if(user && user.id_usuario){
             router.navigateByUrl('/')
         }
         if(localStorage.getItem('produto') == null){
