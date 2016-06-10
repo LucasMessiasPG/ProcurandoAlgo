@@ -26,7 +26,7 @@ export class ListaClienteComponent {
             });
     }
     
-    enviarEmail(cliente) {console.log(cliente);
+    enviarEmail(cliente) {
         var headers = new Headers();
         
         headers.append('Content-Type', 'application/x-www-form-urlencoded');
